@@ -844,7 +844,7 @@
     <!-- Hero Section with Video Background -->
     <section class="hero">
         <div class="hero-video-container">
-            <video autoplay muted loop playsinline>
+            <video id="heroVideo" autoplay muted loop playsinline>
                 <source src="bg-video.mp4" type="video/mp4">
             </video>
             <div class="hero-watermark-cover"></div>
@@ -1271,6 +1271,15 @@
             }
         }
         setTimeout(typeEffect, 1500);
+
+        // ===== VIDEO AUTOPLAY FIX FOR MOBILE =====
+        const heroVideo = document.getElementById('heroVideo');
+        if (heroVideo) {
+            heroVideo.play().catch(() => {
+                document.addEventListener('touchstart', () => { heroVideo.play(); }, { once: true });
+                document.addEventListener('click', () => { heroVideo.play(); }, { once: true });
+            });
+        }
 
         // ===== NAV SCROLL =====
         const navbar = document.getElementById('navbar');
