@@ -1315,6 +1315,35 @@
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
         let isPlaying = false;
+        let musicAutoplayAttempted = false;
+
+        function startMusic() {
+            if (musicAutoplayAttempted) return;
+            musicAutoplayAttempted = true;
+            bgMusic.volume = 0.3;
+            bgMusic.play().then(() => {
+                musicToggle.classList.add('playing');
+                isPlaying = true;
+            }).catch(() => {
+                // 自动播放被阻止，等待用户交互
+            });
+        }
+
+        // 页面加载后尝试自动播放
+        window.addEventListener('load', startMusic);
+
+        // 用户第一次交互时再次尝试
+        ['click', 'touchstart', 'scroll'].forEach(evt => {
+            document.addEventListener(evt, () => {
+                if (!isPlaying && bgMusic.paused) {
+                    bgMusic.volume = 0.3;
+                    bgMusic.play().then(() => {
+                        musicToggle.classList.add('playing');
+                        isPlaying = true;
+                    }).catch(() => {});
+                }
+            }, { once: true });
+        });
 
         musicToggle.addEventListener('click', () => {
             if (isPlaying) {
@@ -1322,7 +1351,7 @@
                 musicToggle.classList.remove('playing');
                 isPlaying = false;
             } else {
-                bgMusic.volume = 0.4;
+                bgMusic.volume = 0.3;
                 bgMusic.play().then(() => {
                     musicToggle.classList.add('playing');
                     isPlaying = true;
