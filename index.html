@@ -439,8 +439,8 @@
         }
         .profile-card {
             position: relative;
-            width: 320px;
-            padding: 40px;
+            width: 360px;
+            padding: 0;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
             backdrop-filter: blur(40px) saturate(1.8);
             -webkit-backdrop-filter: blur(40px) saturate(1.8);
@@ -454,6 +454,7 @@
             transition: all 0.4s ease;
             transform-style: preserve-3d;
             perspective: 1000px;
+            overflow: hidden;
         }
         .profile-card::before {
             content: '';
@@ -470,61 +471,90 @@
             0%, 100% { opacity: 0.3; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.02); }
         }
-        .profile-avatar {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin: 0 auto 24px;
+        .profile-header {
+            padding: 32px 32px 16px;
+        }
+        .profile-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .profile-role {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+        }
+        .profile-photo {
+            width: 100%;
+            height: 320px;
             position: relative;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(255, 216, 102, 0.3) 100%);
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(42, 42, 96, 0.3) 0%, rgba(26, 26, 62, 0.5) 100%);
+        }
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to top, rgba(26, 26, 62, 0.8), transparent);
+        }
+        .profile-github {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 40px rgba(255, 216, 102, 0.2), 0 0 80px rgba(167, 139, 250, 0.15);
-            overflow: hidden;
+            gap: 14px;
+            padding: 20px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .profile-avatar img {
+        .profile-github-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .profile-github-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .profile-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 400;
+        .profile-github-info {
+            flex: 1;
+            text-align: left;
+        }
+        .profile-github-name {
+            font-size: 0.95rem;
             color: var(--text);
-            margin-bottom: 8px;
+            font-weight: 500;
+            margin-bottom: 2px;
         }
-        .profile-role {
-            font-size: 0.85rem;
-            color: var(--accent);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-        .profile-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .profile-stat {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .profile-stat-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--text);
-        }
-        .profile-stat-label {
-            font-size: 0.7rem;
+        .profile-github-handle {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            letter-spacing: 1px;
+        }
+        .profile-github-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #4ade80;
+        }
+        .profile-github-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 8px #4ade80;
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -1095,24 +1125,22 @@
         <div class="about-inner">
             <div class="about-visual reveal">
                 <div class="profile-card" id="profileCard">
-                    <div class="profile-avatar">
-                        <span>👩‍💻</span>
+                    <div class="profile-header">
+                        <h3 class="profile-name">谢静雅</h3>
+                        <p class="profile-role">UE5 虚拟仿真开发工程师</p>
                     </div>
-                    <h3 class="profile-name">谢静雅</h3>
-                    <p class="profile-role">UE5 Developer</p>
-                    <div class="profile-stats">
-                        <div class="profile-stat">
-                            <span class="profile-stat-value">4</span>
-                            <span class="profile-stat-label">Projects</span>
+                    <div class="profile-photo">
+                        <img src="photo.jpg" alt="谢静雅">
+                    </div>
+                    <div class="profile-github">
+                        <div class="profile-github-avatar">
+                            <img src="https://github.com/xieyayay.png" alt="GitHub Avatar">
                         </div>
-                        <div class="profile-stat">
-                            <span class="profile-stat-value">9</span>
-                            <span class="profile-stat-label">Awards</span>
+                        <div class="profile-github-info">
+                            <div class="profile-github-name">xieyayay</div>
+                            <div class="profile-github-handle">@xieyayay</div>
                         </div>
-                        <div class="profile-stat">
-                            <span class="profile-stat-value">3+</span>
-                            <span class="profile-stat-label">Years</span>
-                        </div>
+                        <div class="profile-github-status">在线</div>
                     </div>
                 </div>
             </div>
