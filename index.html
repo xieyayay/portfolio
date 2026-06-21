@@ -672,58 +672,108 @@
         .project-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
         .project-role { font-size: 0.8rem; color: var(--text-muted); padding: 14px 20px; border-left: 2px solid var(--accent); background: rgba(255, 216, 102, 0.06); border-radius: 0 12px 12px 0; }
 
-        /* ===== HONORS ===== */
-        .honors-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        /* ===== HONORS - CIRCULAR GALLERY ===== */
+        .honors-section {
+            overflow: hidden;
+            padding: 120px 0;
         }
-        .honor-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-            backdrop-filter: blur(40px) saturate(1.8);
-            -webkit-backdrop-filter: blur(40px) saturate(1.8);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 50px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
+        .honors-gallery {
             position: relative;
+            height: 500px;
+            perspective: 1000px;
+            cursor: grab;
+        }
+        .honors-gallery:active { cursor: grabbing; }
+        .honors-track {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s linear;
+        }
+        .honor-card {
+            position: absolute;
+            width: 280px;
+            transform-style: preserve-3d;
+            transition: all 0.4s ease;
+        }
+        .honor-card-inner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
+            backdrop-filter: blur(30px) saturate(1.6);
+            -webkit-backdrop-filter: blur(30px) saturate(1.6);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
             overflow: hidden;
             box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 12px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
                 inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
         }
-        .honor-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+        .honor-card:hover .honor-card-inner {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+            transform: scale(1.05);
         }
-        .honor-item::after {
+        .honor-card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(255, 216, 102, 0.15) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .honor-card-img::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            opacity: 0.5;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
         }
-        .honor-item:hover::before { transform: scaleX(1); }
-        .honor-item:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.22);
-            box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+        .honor-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
         }
-        .honor-year { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--accent); margin-bottom: 16px; text-shadow: 0 0 10px rgba(255, 216, 102, 0.3); }
-        .honor-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; color: var(--text); }
-        .honor-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .honor-card-content {
+            padding: 24px;
+            text-align: center;
+        }
+        .honor-card-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(255, 216, 102, 0.3);
+            letter-spacing: 2px;
+        }
+        .honor-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .honor-card-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .honors-hint {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            opacity: 0.6;
+        }
 
         /* ===== CONTACT ===== */
         .contact {
@@ -1148,59 +1198,125 @@
     </section>
 
     <!-- Honors -->
-    <section id="honors">
-        <div class="section-header reveal">
+    <section class="honors-section" id="honors">
+        <div class="section-header reveal" style="padding: 0 60px;">
             <span class="section-eyebrow">Awards & Honors</span>
             <h2 class="section-title">获奖<em>荣誉</em></h2>
             <p class="section-desc">在学业与竞赛中持续突破，获得多项荣誉与奖学金</p>
         </div>
-        <div class="honors-grid reveal">
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">国家励志奖学金</h3>
-                <p class="honor-desc">专业排名第六</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">校一等奖学金</h3>
-                <p class="honor-desc">专业排名第六</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">校三好学生</h3>
-                <p class="honor-desc">班委+成绩优异</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">优秀青年志愿者</h3>
-                <p class="honor-desc">积极参加各项活动</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">挑战杯省级铜奖</h3>
-                <p class="honor-desc">科技创新竞赛</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">金种子校奖</h3>
-                <p class="honor-desc">创新创业项目</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">设计马拉松铜奖</h3>
-                <p class="honor-desc">设计创新竞赛</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">优秀青年志愿者</h3>
-                <p class="honor-desc">志愿服务表彰</p>
-            </div>
-            <div class="honor-item">
-                <span class="honor-year">2025</span>
-                <h3 class="honor-title">国家励志奖学金</h3>
-                <p class="honor-desc">综合表现优异</p>
+        <div class="honors-gallery" id="honorsGallery">
+            <div class="honors-track" id="honorsTrack">
+                <div class="honor-card" data-index="0">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🏆</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">国家励志奖学金</h3>
+                            <p class="honor-card-desc">专业排名第六</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="1">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🥇</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">校一等奖学金</h3>
+                            <p class="honor-card-desc">专业排名第六</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="2">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>⭐</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">校三好学生</h3>
+                            <p class="honor-card-desc">班委+成绩优异</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="3">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>❤️</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">优秀青年志愿者</h3>
+                            <p class="honor-card-desc">积极参加各项活动</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="4">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🔬</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">挑战杯省级铜奖</h3>
+                            <p class="honor-card-desc">科技创新竞赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="5">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🌱</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">金种子校奖</h3>
+                            <p class="honor-card-desc">创新创业项目</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="6">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🎨</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">设计马拉松铜奖</h3>
+                            <p class="honor-card-desc">设计创新竞赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="7">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🤝</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">优秀青年志愿者</h3>
+                            <p class="honor-card-desc">志愿服务表彰</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="8">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>💎</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">国家励志奖学金</h3>
+                            <p class="honor-card-desc">综合表现优异</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <p class="honors-hint">← 拖拽或滚动浏览更多 →</p>
     </section>
 
     <!-- Contact -->
@@ -1470,6 +1586,95 @@
                 });
             }
         });
+
+        // ===== CIRCULAR GALLERY =====
+        const gallery = document.getElementById('honorsGallery');
+        const track = document.getElementById('honorsTrack');
+        const cards = document.querySelectorAll('.honor-card');
+        const cardCount = cards.length;
+        const radius = 500;
+        let angle = 0;
+        let targetAngle = 0;
+        let isDragging = false;
+        let startX = 0;
+        let autoRotate = true;
+
+        function positionCards() {
+            const angleStep = 360 / cardCount;
+            cards.forEach((card, i) => {
+                const cardAngle = (i * angleStep + angle) * (Math.PI / 180);
+                const x = Math.sin(cardAngle) * radius;
+                const z = Math.cos(cardAngle) * radius - radius;
+                const rotateY = -Math.sin(cardAngle) * 25;
+                const scale = (z + radius) / (radius * 2) * 0.3 + 0.7;
+                const opacity = (z + radius) / (radius * 2) * 0.5 + 0.5;
+
+                card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+                card.style.opacity = opacity;
+                card.style.zIndex = Math.round(z + radius);
+            });
+        }
+
+        function animate() {
+            if (autoRotate && !isDragging) {
+                targetAngle += 0.15;
+            }
+            angle += (targetAngle - angle) * 0.08;
+            positionCards();
+            requestAnimationFrame(animate);
+        }
+
+        // Drag interaction
+        gallery.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            autoRotate = false;
+            startX = e.clientX;
+            gallery.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            targetAngle -= deltaX * 0.3;
+            startX = e.clientX;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            gallery.style.cursor = 'grab';
+            setTimeout(() => { autoRotate = true; }, 3000);
+        });
+
+        // Touch interaction
+        gallery.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            autoRotate = false;
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        gallery.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.touches[0].clientX - startX;
+            targetAngle -= deltaX * 0.3;
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        gallery.addEventListener('touchend', () => {
+            isDragging = false;
+            setTimeout(() => { autoRotate = true; }, 3000);
+        });
+
+        // Scroll interaction
+        gallery.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            autoRotate = false;
+            targetAngle += e.deltaY * 0.1;
+            clearTimeout(gallery.scrollTimeout);
+            gallery.scrollTimeout = setTimeout(() => { autoRotate = true; }, 2000);
+        }, { passive: false });
+
+        positionCards();
+        animate();
     </script>
 </body>
 </html>
