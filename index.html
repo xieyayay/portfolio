@@ -851,67 +851,297 @@
         .about-info-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
         .about-info-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
 
-        /* ===== SKILLS ===== */
+        /* ===== SKILLS LAYOUT ===== */
+        .skills-layout {
+            display: flex;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            align-items: center;
+        }
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 28px;
+            flex: 1;
+            max-width: 700px;
+        }
+        .skills-person {
+            flex: 0 0 360px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+        .skill-device {
+            position: relative;
+            width: min(350px, 100%);
+            aspect-ratio: 9 / 16;
+            border-radius: 42px;
+            padding: 13px;
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08) 18%, rgba(9, 9, 26, 0.88) 52%, rgba(0, 0, 0, 0.76)),
+                linear-gradient(315deg, #070711 0%, #24204b 44%, #080812 100%);
+            box-shadow:
+                18px 34px 70px rgba(0, 0, 0, 0.48),
+                -10px 16px 36px rgba(167, 139, 250, 0.12),
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35),
+                inset 0 -20px 30px rgba(0, 0, 0, 0.42);
+            transform: rotateY(-8deg) rotateX(4deg) rotateZ(2deg);
+            transform-style: preserve-3d;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+        @keyframes phoneFloat {
+            0%, 100% { transform: rotateY(-8deg) rotateX(4deg) rotateZ(2deg) translateY(0); }
+            50% { transform: rotateY(-4deg) rotateX(6deg) rotateZ(1deg) translateY(-12px); }
+        }
+        .skill-device::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            width: 96px;
+            height: 25px;
+            border-radius: 999px;
+            transform: translateX(-50%);
+            background:
+                radial-gradient(circle at 72% 50%, rgba(68, 78, 104, 0.8) 0 3px, transparent 4px),
+                linear-gradient(180deg, #05050b, #10101c);
+            box-shadow:
+                inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.45);
+            z-index: 7;
+        }
+        .skill-device::after {
+            content: '';
+            position: absolute;
+            inset: 13px;
+            border-radius: 31px;
+            pointer-events: none;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+                inset 0 18px 40px rgba(255, 255, 255, 0.08),
+                inset 0 -20px 40px rgba(0, 0, 0, 0.35);
+            z-index: 6;
+        }
+        .skill-device-screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            background: #05050c;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 0 36px rgba(0, 0, 0, 0.52);
+        }
+        .skill-device-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            filter: saturate(1.08) contrast(1.05) brightness(0.98);
+            transform: scale(1.02);
+        }
+        .skill-device-profile {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 34px;
+            height: 30%;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(7, 11, 18, 0.82);
+            box-shadow:
+                0 18px 34px rgba(0, 0, 0, 0.42),
+                0 0 24px rgba(56, 189, 248, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.16);
+            transform: rotate(-1.5deg);
+            animation: profileCardDrift 5.5s ease-in-out infinite;
+            z-index: 3;
+        }
+        .skill-device-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 9% 13%;
+            display: block;
+            opacity: 0.9;
+            filter: saturate(1.08) contrast(1.08);
+        }
+        .skill-device-profile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(5, 8, 13, 0) 34%, rgba(5, 8, 13, 0.38) 100%),
+                linear-gradient(90deg, rgba(5, 8, 13, 0.18), transparent 42%);
+            pointer-events: none;
+        }
+        .skill-device-profile::after {
+            content: 'GitHub / Profile';
+            position: absolute;
+            left: 14px;
+            bottom: 10px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: rgba(2, 6, 12, 0.62);
+            color: rgba(240, 246, 252, 0.86);
+            font-size: 0.62rem;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        @keyframes profileCardDrift {
+            0%, 100% { transform: rotate(-1.5deg) translateY(0); }
+            50% { transform: rotate(0.8deg) translateY(-5px); }
+        }
+        .skill-device-dock {
+            position: absolute;
+            left: 50%;
+            bottom: 13px;
+            width: 78px;
+            height: 4px;
+            border-radius: 999px;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+            z-index: 5;
+        }
+        .skill-device-glare {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(112deg, transparent 0%, rgba(255, 255, 255, 0.28) 18%, transparent 36%),
+                radial-gradient(circle at 72% 10%, rgba(255, 216, 102, 0.16), transparent 34%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            opacity: 0.56;
+            transform: translateX(-55%);
+            animation: phoneGlare 5.8s ease-in-out infinite;
+            z-index: 4;
+        }
+        @keyframes phoneGlare {
+            0%, 20% { transform: translateX(-65%); opacity: 0; }
+            42% { opacity: 0.58; }
+            72%, 100% { transform: translateX(55%); opacity: 0; }
+        }
+        .skill-device-side {
+            position: absolute;
+            display: block;
+            width: 4px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(8, 8, 18, 0.88));
+            box-shadow: inset -1px 0 2px rgba(255, 255, 255, 0.18), 2px 3px 8px rgba(0, 0, 0, 0.28);
+            z-index: -1;
+        }
+        .skill-device-side.is-power {
+            right: -3px;
+            top: 34%;
+            height: 66px;
+        }
+        .skill-device-side.is-volume {
+            left: -3px;
+            top: 25%;
+            height: 92px;
+        }
+        @media (max-width: 1100px) {
+            .skills-layout { flex-direction: column; padding: 0 20px; }
+            .skills-person { flex: 0 0 auto; width: 100%; max-width: 400px; }
+            .skill-device { width: min(340px, 88vw); }
         }
         .skill-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.008) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
             backdrop-filter: blur(40px) saturate(1.2);
             -webkit-backdrop-filter: blur(40px) saturate(1.2);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            padding: 50px 40px;
-            transition: all 0.4s ease;
+            padding: 40px 36px;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
-            box-shadow:
-                0 2px 12px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            animation: skillFloat 5s ease-in-out infinite;
         }
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+        .skill-item:nth-child(1) { animation-delay: 0s; transform: rotate(-0.8deg); }
+        .skill-item:nth-child(2) { animation-delay: -1.2s; transform: rotate(1deg) translateY(30px); }
+        .skill-item:nth-child(3) { animation-delay: -2.4s; transform: rotate(0.5deg) translateY(-10px); }
+        .skill-item:nth-child(4) { animation-delay: -3.6s; transform: rotate(-0.5deg) translateY(20px); }
+        @keyframes skillFloat {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
         }
-        .skill-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            opacity: 0.3;
-        }
-        .skill-item:hover::before { transform: scaleX(1); }
+        .skill-item:nth-child(1) { --rot: -0.8deg; }
+        .skill-item:nth-child(2) { --rot: 1deg; margin-top: 30px; }
+        .skill-item:nth-child(3) { --rot: 0.5deg; }
+        .skill-item:nth-child(4) { --rot: -0.5deg; margin-top: 20px; }
         .skill-item:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow:
-                0 8px 24px rgba(0, 0, 0, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
+            border-color: rgba(255, 216, 102, 0.2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(255, 216, 102, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 2;
         }
-        .skill-number { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--accent); margin-bottom: 20px; display: block; text-shadow: 0 0 10px rgba(255, 216, 102, 0.3); }
-        .skill-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 16px; color: var(--text); }
-        .skill-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+            line-height: 1;
+            opacity: 0.8;
+        }
+        .skill-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.7rem;
+            color: #ffd866;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255, 216, 102, 0.6), 0 0 20px rgba(255, 216, 102, 0.3), 0 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        .skill-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 14px;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .skill-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
         .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .skill-tag {
             padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+            color: #fff;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            border-radius: 8px;
+            border-radius: 10px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
         }
-        .skill-tag:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(255, 216, 102, 0.25); background: rgba(255, 216, 102, 0.08); }
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 16px rgba(255, 216, 102, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: 1fr; gap: 20px; padding: 10px; }
+            .skill-item:nth-child(1),
+            .skill-item:nth-child(2),
+            .skill-item:nth-child(3),
+            .skill-item:nth-child(4) { margin-top: 0; transform: none !important; animation: none; }
+        }
 
         /* ===== PROJECTS ===== */
         .projects {
@@ -920,7 +1150,79 @@
             position: relative;
         }
         .projects-inner { max-width: 1200px; margin: 0 auto; }
-        .project-list { display: flex; flex-direction: column; gap: 40px; }
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            position: relative;
+            padding-left: 50px;
+        }
+        .project-list::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 60px;
+            bottom: 60px;
+            width: 2px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(255, 216, 102, 0.08) 10%,
+                rgba(255, 216, 102, 0.2) 50%,
+                rgba(167, 139, 250, 0.08) 90%,
+                transparent 100%
+            );
+            border-radius: 1px;
+        }
+        .project-list::after {
+            content: '';
+            position: absolute;
+            left: 17px;
+            width: 4px;
+            height: 50px;
+            background: linear-gradient(180deg, transparent, rgba(255, 216, 102, 0.7), transparent);
+            border-radius: 2px;
+            filter: blur(2px);
+            animation: timelineFlow 4.5s ease-in-out infinite;
+            opacity: 0;
+        }
+        @keyframes timelineFlow {
+            0% { top: 60px; opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% { top: calc(100% - 110px); opacity: 0; }
+        }
+        .project-timeline-node {
+            position: absolute;
+            left: 14px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 216, 102, 0.15);
+            border: 2px solid rgba(255, 216, 102, 0.25);
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 0 rgba(255, 216, 102, 0);
+        }
+        .project-timeline-node.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(255, 216, 102, 0.5), 0 0 30px rgba(255, 216, 102, 0.15);
+            transform: scale(1.4);
+        }
+        .project-timeline-label {
+            position: absolute;
+            left: 32px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: rgba(255, 216, 102, 0.35);
+            font-family: 'Playfair Display', serif;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+        .project-timeline-label.active {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 216, 102, 0.3);
+        }
         .project-item {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1006,7 +1308,26 @@
             border-color: var(--accent);
             transform: scale(1.1);
         }
-        .project-content { padding: 10px 0; }
+        .project-content {
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .project-content .blinking-squares-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.18;
+            pointer-events: none;
+        }
+        .project-content > * {
+            position: relative;
+            z-index: 1;
+        }
         .project-meta { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; text-shadow: 0 0 10px rgba(255, 216, 102, 0.3); }
         .project-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 16px; line-height: 1.3; color: var(--text); }
         .project-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
@@ -2325,49 +2646,69 @@
             <h2 class="section-title">核心<em>技术栈</em></h2>
             <p class="section-desc">从引擎底层到UI表现，从蓝图可视化到C++编程，构建完整的技术能力体系</p>
         </div>
-        <div class="skills-grid reveal">
-            <div class="skill-item">
-                <span class="skill-number">01</span>
-                <h3 class="skill-name">UE5引擎开发</h3>
-                <p class="skill-desc">熟练使用UE5蓝图可视化编程，深入理解Gameplay框架，能独立完成核心玩法模块开发</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">蓝图编程</span>
-                    <span class="skill-tag">Gameplay</span>
-                    <span class="skill-tag">UMG</span>
-                    <span class="skill-tag">粒子特效</span>
+        <div class="skills-layout reveal">
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="skill-icon">⚙️</span>
+                    <span class="skill-number">01 / UE5引擎开发</span>
+                    <h3 class="skill-name">虚幻引擎 5<br>核心开发</h3>
+                    <p class="skill-desc">熟练使用蓝图可视化编程，深入理解Gameplay框架，能独立完成核心玩法模块开发。掌握UMG UI系统与Niagara粒子特效。</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">蓝图编程</span>
+                        <span class="skill-tag">Gameplay</span>
+                        <span class="skill-tag">UMG</span>
+                        <span class="skill-tag">粒子特效</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">💻</span>
+                    <span class="skill-number">02 / C++编程</span>
+                    <h3 class="skill-name">C++ 底层开发</h3>
+                    <p class="skill-desc">扎实的C/C++基础，熟悉面向对象与设计模式，能阅读UE C++源码，理解反射机制及垃圾回收。</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">UE C++</span>
+                        <span class="skill-tag">反射机制</span>
+                        <span class="skill-tag">混合开发</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🎨</span>
+                    <span class="skill-number">03 / UI与动画</span>
+                    <h3 class="skill-name">UI & 动画系统</h3>
+                    <p class="skill-desc">熟练使用UMG框架开发复杂交互界面，精通动画蓝图、状态机及动画蒙太奇配置。</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">UMG</span>
+                        <span class="skill-tag">动画蓝图</span>
+                        <span class="skill-tag">状态机</span>
+                        <span class="skill-tag">骨骼绑定</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🛠️</span>
+                    <span class="skill-number">04 / 工程与工具</span>
+                    <h3 class="skill-name">工程化 & 工具链</h3>
+                    <p class="skill-desc">了解性能优化手段，熟练使用Git版本控制，掌握Blender、3ds Max等辅助工具。</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">性能优化</span>
+                        <span class="skill-tag">Blender</span>
+                        <span class="skill-tag">AI工具</span>
+                    </div>
                 </div>
             </div>
-            <div class="skill-item">
-                <span class="skill-number">02</span>
-                <h3 class="skill-name">C++编程</h3>
-                <p class="skill-desc">良好的C/C++基础，熟悉面向对象，能阅读UE C++源码，理解反射机制及垃圾回收</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">C/C++</span>
-                    <span class="skill-tag">UE C++</span>
-                    <span class="skill-tag">反射机制</span>
-                    <span class="skill-tag">混合开发</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-number">03</span>
-                <h3 class="skill-name">UI与动画</h3>
-                <p class="skill-desc">熟练使用UMG框架开发复杂交互界面，熟悉动画蓝图、状态机及动画蒙太奇配置</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">UMG</span>
-                    <span class="skill-tag">动画蓝图</span>
-                    <span class="skill-tag">状态机</span>
-                    <span class="skill-tag">骨骼绑定</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-number">04</span>
-                <h3 class="skill-name">工程与工具</h3>
-                <p class="skill-desc">了解性能优化手段，熟练使用Git版本控制，掌握Blender、3ds Max等辅助工具</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">性能优化</span>
-                    <span class="skill-tag">Blender</span>
-                    <span class="skill-tag">AI工具</span>
+            <div class="skills-person">
+                <div class="skill-device" aria-label="技能篇人物照片">
+                    <span class="skill-device-side is-volume"></span>
+                    <span class="skill-device-side is-power"></span>
+                    <div class="skill-device-screen">
+                        <img src="skill-bg-full.png" alt="技能篇人物照片" class="skill-device-photo">
+                        <div class="skill-device-profile">
+                            <img src="github-profile-mobile.png" alt="GitHub profile overview">
+                        </div>
+                        <span class="skill-device-glare"></span>
+                        <span class="skill-device-dock"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4413,6 +4754,191 @@
 
         // Auto-start the first one (it's expanded by default)
         if (mtInstances[1]) mtInstances[1].start();
+    })();
+
+    // ===== PROJECT TIMELINE =====
+    (function() {
+        const list = document.querySelector('.project-list');
+        if (!list) return;
+        const items = list.querySelectorAll('.project-item');
+        const nodes = [];
+        const labels = [];
+
+        items.forEach((item, i) => {
+            const node = document.createElement('div');
+            node.className = 'project-timeline-node';
+            list.appendChild(node);
+            nodes.push(node);
+
+            const label = document.createElement('div');
+            label.className = 'project-timeline-label';
+            label.textContent = '0' + (i + 1);
+            list.appendChild(label);
+            labels.push(label);
+        });
+
+        function positionMarkers() {
+            const listRect = list.getBoundingClientRect();
+            items.forEach((item, i) => {
+                const itemRect = item.getBoundingClientRect();
+                const center = itemRect.top - listRect.top + itemRect.height / 2;
+                nodes[i].style.top = (center - 5) + 'px';
+                labels[i].style.top = (center - 6) + 'px';
+            });
+        }
+
+        positionMarkers();
+        window.addEventListener('resize', positionMarkers);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const idx = Array.from(items).indexOf(entry.target);
+                if (idx !== -1) {
+                    nodes[idx].classList.toggle('active', entry.isIntersecting);
+                    labels[idx].classList.toggle('active', entry.isIntersecting);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        items.forEach(item => observer.observe(item));
+    })();
+
+    // ===== BLINKING SQUARES =====
+    (function() {
+        const squareColors = ['#ff7e5f', '#38bdf8', '#fbbf24', '#34d399'];
+
+        class BlinkingSquares {
+            constructor(container, options = {}) {
+                this.container = container;
+                this.canvas = document.createElement('canvas');
+                this.canvas.className = 'blinking-squares-canvas';
+                container.insertBefore(this.canvas, container.firstChild);
+                this.ctx = this.canvas.getContext('2d');
+
+                this.direction = options.direction || 'right';
+                this.gridSize = options.gridSize || 28;
+                this.squareSize = options.squareSize || 0.52;
+                this.fadeStart = options.fadeStart || 0.5;
+                this.fadeEnd = options.fadeEnd || 1;
+                this.falloff = options.falloff || 1.4;
+                this.minBrightness = options.minBrightness || 0.5;
+                this.twinkleSpeed = options.twinkleSpeed || 1.2;
+                this.twinkleStrength = options.twinkleStrength || 0.9;
+                this.intensity = options.intensity || 1;
+                this.opacity = options.opacity || 1;
+                this.squareColor = options.squareColor || '#a78bfa';
+                this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+                this.cells = [];
+                this.time = 0;
+                this.isVisible = false;
+                this.rafId = null;
+
+                this.resize();
+                this.initCells();
+                this.observe();
+                window.addEventListener('resize', () => { this.resize(); this.initCells(); });
+            }
+
+            resize() {
+                const rect = this.container.getBoundingClientRect();
+                this.w = rect.width;
+                this.h = rect.height;
+                this.canvas.width = this.w * this.dpr;
+                this.canvas.height = this.h * this.dpr;
+                this.canvas.style.width = this.w + 'px';
+                this.canvas.style.height = this.h + 'px';
+                this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+            }
+
+            initCells() {
+                this.cells = [];
+                const isHorizontal = this.direction === 'right' || this.direction === 'left';
+                const longAxis = isHorizontal ? this.w : this.h;
+                const cellSize = longAxis / this.gridSize;
+                const cols = Math.ceil(this.w / cellSize);
+                const rows = Math.ceil(this.h / cellSize);
+
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        let pos;
+                        if (this.direction === 'right') pos = c / cols;
+                        else if (this.direction === 'left') pos = 1 - c / cols;
+                        else if (this.direction === 'top') pos = 1 - r / rows;
+                        else pos = r / rows;
+
+                        let density = 0;
+                        if (pos >= this.fadeStart) {
+                            const t = (pos - this.fadeStart) / (this.fadeEnd - this.fadeStart);
+                            density = Math.pow(Math.min(t, 1), this.falloff);
+                        }
+
+                        if (Math.random() < density) {
+                            const rgb = this.hexToRgb(this.squareColor);
+                            this.cells.push({
+                                c, r, cellSize,
+                                phase: Math.random() * Math.PI * 2,
+                                speed: 0.8 + Math.random() * 0.6,
+                                baseR: rgb.r, baseG: rgb.g, baseB: rgb.b,
+                                brightness: this.minBrightness + Math.random() * (1 - this.minBrightness)
+                            });
+                        }
+                    }
+                }
+            }
+
+            hexToRgb(hex) {
+                const n = parseInt(hex.slice(1), 16);
+                return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+            }
+
+            observe() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        this.isVisible = entry.isIntersecting;
+                        if (this.isVisible && !this.rafId) this.animate();
+                        else if (!this.isVisible && this.rafId) {
+                            cancelAnimationFrame(this.rafId);
+                            this.rafId = null;
+                        }
+                    });
+                }, { threshold: 0.05 });
+                observer.observe(this.container);
+            }
+
+            animate() {
+                this.time += 0.016;
+                this.ctx.clearRect(0, 0, this.w, this.h);
+                const s = this.squareSize;
+
+                this.cells.forEach(cell => {
+                    const twinkle = Math.sin(this.time * this.twinkleSpeed * cell.speed + cell.phase);
+                    const brightnessMult = 1 - this.twinkleStrength * 0.5 * (1 - twinkle);
+                    const alpha = this.opacity * this.intensity * cell.brightness * brightnessMult;
+
+                    const x = cell.c * cell.cellSize + cell.cellSize * (1 - s) * 0.5;
+                    const y = cell.r * cell.cellSize + cell.cellSize * (1 - s) * 0.5;
+                    const size = cell.cellSize * s;
+
+                    this.ctx.fillStyle = `rgba(${cell.baseR}, ${cell.baseG}, ${cell.baseB}, ${alpha})`;
+                    this.ctx.fillRect(x, y, size, size);
+                });
+
+                this.rafId = requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        document.querySelectorAll('.project-content').forEach((el, i) => {
+            new BlinkingSquares(el, {
+                direction: 'right',
+                squareColor: squareColors[i % squareColors.length],
+                gridSize: 20,
+                fadeStart: 0.6,
+                fadeEnd: 1,
+                falloff: 1.6,
+                twinkleSpeed: 0.8 + Math.random() * 0.5
+            });
+        });
     })();
     </script>
 </body>
