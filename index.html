@@ -37,6 +37,9 @@
             overflow-x: hidden;
             line-height: 1.7;
         }
+        img, video, canvas {
+            max-width: 100%;
+        }
 
         /* ===== AMBIENT GLOW (top-level background) ===== */
         body::before {
@@ -2324,7 +2327,12 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .about-inner { grid-template-columns: 1fr; gap: 60px; }
-            .project-item { grid-template-columns: 1fr; gap: 30px; }
+            .project-list { padding-left: 0; }
+            .project-list::before,
+            .project-list::after,
+            .project-timeline-node,
+            .project-timeline-label { display: none; }
+            .project-item { grid-template-columns: 1fr; gap: 30px; padding: 32px; }
             .project-item:nth-child(even) { direction: ltr; }
             .skills-grid, .honors-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2333,8 +2341,11 @@
             .nav-links { display: none; }
             section { padding: 80px 30px; }
             .about, .projects { padding: 80px 30px; }
+            .menu-content { padding: 80px 32px 48px; }
+            .menu-nav-section { padding-right: 32px; }
         }
         @media (max-width: 640px) {
+            html, body { width: 100%; overflow-x: hidden; }
             .hero-content { padding: 0 24px; }
             .shiny-text { font-size: clamp(2.2rem, 12vw, 3.5rem); line-height: 1.1; }
             .hero-eyebrow { font-size: 0.65rem; letter-spacing: 3px; padding: 6px 16px; }
@@ -2345,13 +2356,88 @@
             section { padding: 60px 20px; }
             .about, .projects { padding: 60px 20px; }
             .internship { padding: 80px 20px; }
+            .section-header { margin-bottom: 44px; }
+            .section-header[style] { padding: 0 !important; }
+            .section-eyebrow { letter-spacing: 2.5px; }
+            .section-desc { font-size: 0.95rem; }
+            .about-inner,
+            .skills-layout,
+            .projects-inner,
+            .project-item,
+            .project-content,
+            .intern-card,
+            .honor-card,
+            .contact-card { min-width: 0; }
+            .skills-layout { gap: 34px; padding: 0; }
+            .skills-grid { width: 100%; padding: 0; gap: 18px; }
+            .skills-person { max-width: 100%; overflow: visible; }
+            .skill-device {
+                width: min(292px, 78vw);
+                max-height: 520px;
+                transform: rotateZ(1deg);
+                animation: phoneFloatMobile 6s ease-in-out infinite;
+                border-radius: 36px;
+                padding: 11px;
+            }
+            @keyframes phoneFloatMobile {
+                0%, 100% { transform: rotateZ(1deg) translateY(0); }
+                50% { transform: rotateZ(-0.5deg) translateY(-8px); }
+            }
+            .skill-device::before {
+                top: 13px;
+                width: 78px;
+                height: 21px;
+            }
+            .skill-device::after {
+                inset: 11px;
+                border-radius: 27px;
+            }
+            .skill-device-screen { border-radius: 26px; }
+            .skill-device-profile {
+                left: 14px;
+                right: 14px;
+                bottom: 30px;
+                height: 27%;
+                border-radius: 15px;
+            }
+            .skill-device-profile::after {
+                left: 10px;
+                bottom: 8px;
+                font-size: 0.56rem;
+                padding: 3px 7px;
+            }
+            .skill-device-side { display: none; }
+            .skill-item { padding: 28px 24px; border-radius: 18px; }
+            .skill-name { font-size: 1.18rem; }
+            .skill-desc { font-size: 0.82rem; margin-bottom: 18px; }
+            .skill-tag { font-size: 0.7rem; padding: 5px 10px; }
+            .project-item { padding: 22px; gap: 20px; border-radius: 20px; }
+            .project-content { padding: 22px; border-radius: 16px; }
+            .project-title { font-size: 1.45rem; }
+            .project-desc { font-size: 0.84rem; }
+            .project-visual { border-radius: 14px; }
             .intern-card { flex-direction: column; padding: 24px; }
             .intern-date { flex-direction: row; width: auto; gap: 10px; }
             .intern-svg { width: 50px; height: 50px; }
             .contact { padding: 100px 20px; }
-            .contact-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
             .skills-grid { grid-template-columns: 1fr; }
             .honors-grid { grid-template-columns: 1fr; }
+            .fullscreen-menu { overflow-y: auto; }
+            .menu-content {
+                flex-direction: column;
+                min-height: 100%;
+                height: auto;
+                padding: 92px 28px 48px;
+                gap: 36px;
+            }
+            .menu-nav-section {
+                padding-right: 0;
+                border-right: 0;
+                justify-content: flex-start;
+            }
+            .menu-info-section { padding-left: 0; }
+            .fullscreen-nav a { font-size: clamp(2rem, 13vw, 4rem); }
             footer { padding: 40px 20px; }
             .music-player { bottom: 20px; right: 20px; }
             .music-btn { width: 48px; height: 48px; }
@@ -3318,21 +3404,14 @@
             }
         }
 
-        // ===== PROJECT VIDEO LAZY LOAD =====
+        // ===== PROJECT VIDEO DEFAULT OFF =====
         (function() {
-            const lazyVideos = [document.getElementById('video1'), document.getElementById('video2')].filter(Boolean);
-            if (lazyVideos.length === 0) return;
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-                    if (entry.isIntersecting) {
-                        video.play().catch(() => {});
-                    } else {
-                        video.pause();
-                    }
-                });
-            }, { threshold: 0.2 });
-            lazyVideos.forEach(video => videoObserver.observe(video));
+            const projectVideos = [document.getElementById('video1'), document.getElementById('video2')].filter(Boolean);
+            projectVideos.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+                video.muted = true;
+            });
         })();
 
         // ===== DOT FIELD =====
