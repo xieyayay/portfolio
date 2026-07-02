@@ -803,6 +803,9 @@
             position: relative;
             z-index: 1;
         }
+
+        /* ===== LANYARD 3D ===== */
+        #lanyard3d canvas { display: block; width: 100%; height: 100%; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .about-content h3 {
@@ -1122,6 +1125,515 @@
             opacity: 0.6;
         }
 
+        /* ===== INTERNSHIP - MAGIC TRANSFORM ===== */
+        .internship {
+            padding: 120px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Magic Transform Stage */
+        .magic-transform {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 32px auto;
+            padding: 32px 40px;
+            position: relative;
+        }
+
+        /* Left: Detail Panel */
+        .mt-detail-panel {
+            flex: 0 0 340px;
+            display: flex;
+            align-items: center;
+        }
+        .mt-detail-card {
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .mt-detail-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        .mt-detail-cover {
+            height: 140px;
+            background: linear-gradient(135deg, var(--accent-secondary), #7c3aed, var(--accent));
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .mt-detail-logo {
+            position: absolute;
+            bottom: 10px;
+            right: 16px;
+            width: 100px;
+            height: 40px;
+        }
+        .mt-detail-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #fff;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+        .mt-detail-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,20,0.3) 0%, rgba(10,10,20,0.5) 100%);
+            border-radius: inherit;
+            z-index: 1;
+        }
+        .mt-detail-logo-img {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .mt-detail-logo-text {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+        .mt-detail-body {
+            padding: 22px;
+        }
+        .mt-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .mt-detail-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .mt-detail-info h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .mt-detail-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+        .mt-detail-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .mt-detail-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .mt-detail-tags span {
+            font-size: 0.7rem;
+            padding: 5px 14px;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 20px;
+            color: var(--accent-secondary);
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+        }
+        .mt-detail-tags span:hover {
+            background: rgba(167, 139, 250, 0.2);
+            transform: translateY(-1px);
+        }
+        .mt-detail-meta {
+            padding-top: 14px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* Right: Animation Pipeline */
+        .mt-pipeline {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            max-width: 620px;
+        }
+
+        /* Left: Document Track */
+        .mt-doc-track {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+        }
+        .mt-doc-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .mt-doc-stream {
+            width: 200px;
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+        .mt-doc-card {
+            position: absolute;
+            width: 180px;
+            height: 110px;
+            left: 10px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .mt-doc-card .doc-icon {
+            font-size: 1.4rem;
+        }
+        .mt-doc-card .doc-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .mt-doc-card .doc-meta {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+        .mt-doc-card .doc-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: auto;
+        }
+        .mt-doc-card .doc-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        /* Center: Transform Hub */
+        .mt-hub {
+            width: 90px;
+            height: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .mt-hub-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-secondary);
+            border-radius: 50%;
+            animation: hubRingPulse 2s ease-in-out infinite;
+        }
+        .mt-hub-ring::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 50%;
+            animation: hubRingPulse 2s ease-in-out infinite 0.3s;
+        }
+        .mt-hub-core {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-secondary), #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(167, 139, 250, 0.5), 0 0 60px rgba(167, 139, 250, 0.2);
+            z-index: 2;
+            animation: hubCoreGlow 2s ease-in-out infinite;
+        }
+        .mt-hub-icon {
+            width: 18px;
+            height: 18px;
+        }
+        .mt-hub-glow {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.2), transparent 70%);
+            pointer-events: none;
+            animation: hubGlowPulse 3s ease-in-out infinite;
+        }
+        .mt-hub-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .mt-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @keyframes hubRingPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.6; }
+        }
+        @keyframes hubCoreGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(167, 139, 250, 0.5), 0 0 60px rgba(167, 139, 250, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(167, 139, 250, 0.7), 0 0 80px rgba(167, 139, 250, 0.3); }
+        }
+        @keyframes hubGlowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Right: Result Track */
+        .mt-result-track {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .mt-result-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .mt-result-chips {
+            width: 200px;
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 8px;
+        }
+        .mt-result-chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            opacity: 0;
+            transform: scale(0.5) translateX(-20px);
+            animation: chipPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes chipPop {
+            to { opacity: 1; transform: scale(1) translateX(0); }
+        }
+
+        /* Document Stream Animation */
+        @keyframes docSlide {
+            0% { transform: translateY(-140px); opacity: 0; }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            85% { opacity: 0; transform: translateY(160px) scale(0.8); }
+            100% { opacity: 0; transform: translateY(200px); }
+        }
+
+
+
+        /* ===== TIMELINE ACCORDION ===== */
+        .internship-timeline {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            position: relative;
+            padding-left: 48px;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-secondary), rgba(167,139,250,0.2));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-node {
+            position: absolute;
+            left: -40px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-secondary);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--accent-secondary);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        .timeline-item.active .timeline-node {
+            background: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent), 0 0 20px rgba(255,216,102,0.4);
+            transform: scale(1.2);
+        }
+        .timeline-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s ease;
+            will-change: transform;
+        }
+        .timeline-card:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 24px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+        .timeline-header:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        .timeline-main {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 0;
+        }
+        .timeline-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .timeline-logo-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .timeline-info {
+            min-width: 0;
+        }
+        .timeline-info h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+        .timeline-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .timeline-date {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .timeline-arrow {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .timeline-header:hover .timeline-arrow {
+            background: rgba(167,139,250,0.15);
+            color: var(--accent-secondary);
+        }
+        .timeline-item.active .timeline-arrow {
+            transform: rotate(180deg);
+            background: rgba(167,139,250,0.2);
+            color: var(--accent-secondary);
+        }
+        .timeline-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+        }
+        .timeline-item.active .timeline-body {
+            max-height: 600px;
+            opacity: 1;
+        }
+        .timeline-body .magic-transform {
+            margin: 0;
+            padding: 0 24px 24px;
+            gap: 36px;
+        }
+
         /* ===== CONTACT ===== */
         .contact {
             text-align: center;
@@ -1311,6 +1823,183 @@
         .music-bars span:nth-child(4) { animation-delay: 0.08s; }
         @keyframes barBounce { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1); } }
 
+        /* ===== COLOR PICKER ===== */
+        .color-picker-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px var(--accent-glow), 0 0 0 1px rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #1a1a2e;
+        }
+        .color-picker-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 30px var(--accent-glow), 0 0 0 2px rgba(255,255,255,0.2);
+        }
+        .color-picker-toggle svg {
+            width: 22px;
+            height: 22px;
+        }
+        .color-picker-toggle.active {
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+
+        .color-picker-panel {
+            position: fixed;
+            bottom: 75px;
+            left: 20px;
+            z-index: 1000;
+            width: 240px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        .color-picker-panel.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .color-picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .color-picker-header span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+        .color-picker-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        .color-picker-close:hover {
+            color: var(--text);
+            background: rgba(255,255,255,0.1);
+        }
+        .color-picker-body {
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .color-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .color-row label {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+        .color-row input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+            -webkit-appearance: none;
+            appearance: none;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px var(--glass-border);
+            transition: box-shadow 0.2s ease;
+        }
+        .color-row input[type="color"]:hover {
+            box-shadow: 0 0 0 2px var(--accent-secondary);
+        }
+        .color-row input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .color-row input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+        .color-presets {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            padding: 8px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            margin: 4px 0;
+        }
+        .preset-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--surface);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .preset-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .preset-btn.active {
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .color-reset {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        .color-reset:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+            border-color: var(--accent-secondary);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .about-inner { grid-template-columns: 1fr; gap: 60px; }
@@ -1334,6 +2023,10 @@
             .hero-glow { width: 300px; height: 300px; }
             section { padding: 60px 20px; }
             .about, .projects { padding: 60px 20px; }
+            .internship { padding: 80px 20px; }
+            .intern-card { flex-direction: column; padding: 24px; }
+            .intern-date { flex-direction: row; width: auto; gap: 10px; }
+            .intern-svg { width: 50px; height: 50px; }
             .contact { padding: 100px 20px; }
             .contact-grid { grid-template-columns: 1fr 1fr; }
             .skills-grid { grid-template-columns: 1fr; }
@@ -1342,9 +2035,125 @@
             .music-player { bottom: 20px; right: 20px; }
             .music-btn { width: 48px; height: 48px; }
         }
+
+        /* ===== VIDEO PLAY OVERLAY ===== */
+        .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 3;
+        }
+        .video-play-overlay:hover {
+            background: rgba(0,0,0,0.25);
+        }
+        .video-play-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 8px;
+        }
+        .video-play-overlay:hover .video-play-btn {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+        }
+        .video-play-text {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 1px;
+        }
+
+        /* ===== VIDEO MODAL ===== */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(5,5,10,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .video-modal-content {
+            position: relative;
+            width: 85vw;
+            max-width: 1200px;
+            height: 75vh;
+            background: #000;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .video-modal.active .video-modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #modalVideo {
+            position: relative;
+            z-index: 2;
+            transform: translateZ(0);
+            border-radius: 16px;
+        }
+        .video-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .video-modal-close:hover {
+            background: rgba(255,255,255,0.25);
+            transform: rotate(90deg);
+        }
+        @media (max-width: 768px) {
+            .video-modal-content {
+                width: 95vw;
+                height: 50vh;
+                border-radius: 12px;
+            }
+            .video-play-btn { width: 48px; height: 48px; font-size: 1.2rem; }
+        }
     </style>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 </head>
 <body>
+    <!-- Lanyard Badge 3D -->
+    <div id="lanyard3d" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:998;pointer-events:none;opacity:0;transition:opacity 0.6s ease;"></div>
+
     <!-- Site Logo -->
     <a href="#" class="site-logo" id="siteLogo">xieyayaya</a>
 
@@ -1360,7 +2169,7 @@
         <a href="#" class="menu-logo-top">xieyayaya</a>
 
         <div class="menu-video-bg">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="none" id="menuVideo">
                 <source src="bg-video.mp4" type="video/mp4">
             </video>
             <div class="menu-video-overlay"></div>
@@ -1373,7 +2182,8 @@
                     <li><a href="#skills" class="menu-link"><span class="nav-num">02</span><span class="nav-text">技能</span></a></li>
                     <li><a href="#projects" class="menu-link"><span class="nav-num">03</span><span class="nav-text">项目</span></a></li>
                     <li><a href="#honors" class="menu-link"><span class="nav-num">04</span><span class="nav-text">荣誉</span></a></li>
-                    <li><a href="#contact" class="menu-link"><span class="nav-num">05</span><span class="nav-text">联系</span></a></li>
+                    <li><a href="#internship" class="menu-link"><span class="nav-num">05</span><span class="nav-text">实习经历</span></a></li>
+                    <li><a href="#contact" class="menu-link"><span class="nav-num">06</span><span class="nav-text">联系</span></a></li>
                 </ul>
             </div>
 
@@ -1400,7 +2210,7 @@
     <!-- Hero Section with Video Background -->
     <section class="hero">
         <div class="hero-video-container">
-            <video id="heroVideo" autoplay muted loop playsinline>
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata">
                 <source src="bg-video.mp4" type="video/mp4">
             </video>
             <div class="hero-watermark-cover"></div>
@@ -1574,11 +2384,14 @@
             </div>
             <div class="project-list">
                 <div class="project-item reveal">
-                    <div class="project-visual" data-project="1">
-                        <video id="video1" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                            <source src="project-benzocaine.mp4" type="video/mp4">
+                    <div class="project-visual" data-project="1" onclick="openVideoModal('video1')">
+                        <video id="video1" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+                            <source src="project-benzocaine-seek.mp4" type="video/mp4">
                         </video>
-                        <button class="video-mute-btn" onclick="toggleVideoMute('video1', this)" title="开启声音">🔇</button>
+                        <div class="video-play-overlay">
+                            <div class="video-play-btn">▶</div>
+                            <span class="video-play-text">点击播放</span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <span class="project-meta">虚拟实验室 · 2025</span>
@@ -1588,11 +2401,14 @@
                     </div>
                 </div>
                 <div class="project-item reveal">
-                    <div class="project-visual" data-project="2">
-                        <video id="video2" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                            <source src="project-zinc-fluoride.mp4" type="video/mp4">
+                    <div class="project-visual" data-project="2" onclick="openVideoModal('video2')">
+                        <video id="video2" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+                            <source src="project-zinc-fluoride-seek.mp4" type="video/mp4">
                         </video>
-                        <button class="video-mute-btn" onclick="toggleVideoMute('video2', this)" title="开启声音">🔇</button>
+                        <div class="video-play-overlay">
+                            <div class="video-play-btn">▶</div>
+                            <span class="video-play-text">点击播放</span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <span class="project-meta">虚拟实验室 · 2025</span>
@@ -1623,6 +2439,246 @@
         </div>
     </section>
 
+    <!-- Internship Experience - Timeline Accordion -->
+    <section class="internship" id="internship">
+        <div class="section-header reveal" style="padding: 0 60px;">
+            <span class="section-eyebrow">Internship</span>
+            <h2 class="section-title">实习<em>经历</em></h2>
+            <p class="section-desc">点击展开每一段实习的详情与技能转换</p>
+        </div>
+
+        <div class="internship-timeline reveal">
+            <div class="timeline-line"></div>
+
+            <!-- Item 1: 袋鼠云 -->
+            <div class="timeline-item active" data-index="1">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleInternship(1)">
+                        <div class="timeline-main">
+                            <img src="logo-dtstack.png" class="timeline-logo" alt="袋鼠云">
+                            <div class="timeline-info">
+                                <h4>袋鼠云</h4>
+                                <span>UE5开发实习生 · 数字孪生方向</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">2026.7.13 — 2026.9.13 · 杭州</div>
+                        <div class="timeline-arrow">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 6l4 4 4-4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="magic-transform" id="magicTransform1">
+                            <div class="mt-detail-panel">
+                                <div class="mt-detail-card">
+                                    <div class="mt-detail-cover" style="background-image: url('dtstack-office.png'); background-size: cover; background-position: center;">
+                                        <div class="mt-detail-cover-overlay"></div>
+                                        <div class="mt-detail-badge">实习中</div>
+                                        <img class="mt-detail-logo-img" src="logo-dtstack.png" alt="袋鼠云">
+                                    </div>
+                                    <div class="mt-detail-body">
+                                        <div class="mt-detail-header">
+                                            <div class="mt-detail-avatar">🏗️</div>
+                                            <div class="mt-detail-info">
+                                                <h3>UE5开发实习生</h3>
+                                                <p>袋鼠云 · 数字孪生方向</p>
+                                            </div>
+                                        </div>
+                                        <p class="mt-detail-desc">基于 UE5 引擎参与数字孪生可视化项目开发，负责三维场景搭建、实时数据驱动的交互逻辑实现及孪生体性能优化。</p>
+                                        <div class="mt-detail-tags">
+                                            <span>UE5</span>
+                                            <span>数字孪生</span>
+                                            <span>Blueprint</span>
+                                            <span>C++</span>
+                                        </div>
+                                        <div class="mt-detail-meta">
+                                            <span>📅 2026.7.13 — 2026.9.13</span>
+                                            <span>📍 杭州</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-pipeline">
+                                <div class="mt-doc-track">
+                                    <div class="mt-doc-label">工作任务</div>
+                                    <div class="mt-doc-stream" id="mtDocStream1"></div>
+                                </div>
+                                <div class="mt-hub">
+                                    <div class="mt-hub-ring"></div>
+                                    <div class="mt-hub-core">
+                                        <svg viewBox="0 0 40 40" class="mt-hub-icon">
+                                            <path d="M20 2 L38 20 L20 38 L2 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="20" cy="20" r="6" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                    <div class="mt-hub-glow"></div>
+                                    <div class="mt-hub-particles" id="mtHubParticles1"></div>
+                                </div>
+                                <div class="mt-result-track">
+                                    <div class="mt-result-label">技能成果</div>
+                                    <div class="mt-result-chips" id="mtResultChips1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item" data-index="2">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleInternship(2)">
+                        <div class="timeline-main">
+                            <div class="timeline-logo-placeholder">💻</div>
+                            <div class="timeline-info">
+                                <h4>公司名称</h4>
+                                <span>职位名称 · 方向</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">开始时间 — 结束时间 · 城市</div>
+                        <div class="timeline-arrow">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 6l4 4 4-4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="magic-transform" id="magicTransform2">
+                            <div class="mt-detail-panel">
+                                <div class="mt-detail-card">
+                                    <div class="mt-detail-cover" style="background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);">
+                                        <div class="mt-detail-badge">已结束</div>
+                                        <div class="mt-detail-logo-text">公司名称</div>
+                                    </div>
+                                    <div class="mt-detail-body">
+                                        <div class="mt-detail-header">
+                                            <div class="mt-detail-avatar">💻</div>
+                                            <div class="mt-detail-info">
+                                                <h3>职位名称</h3>
+                                                <p>公司 · 方向</p>
+                                            </div>
+                                        </div>
+                                        <p class="mt-detail-desc">在这里填写你的实习工作描述，介绍你在实习期间负责的主要工作内容和取得的成果。</p>
+                                        <div class="mt-detail-tags">
+                                            <span>技能1</span>
+                                            <span>技能2</span>
+                                            <span>技能3</span>
+                                        </div>
+                                        <div class="mt-detail-meta">
+                                            <span>📅 开始时间 — 结束时间</span>
+                                            <span>📍 城市</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-pipeline">
+                                <div class="mt-doc-track">
+                                    <div class="mt-doc-label">工作任务</div>
+                                    <div class="mt-doc-stream" id="mtDocStream2"></div>
+                                </div>
+                                <div class="mt-hub">
+                                    <div class="mt-hub-ring"></div>
+                                    <div class="mt-hub-core">
+                                        <svg viewBox="0 0 40 40" class="mt-hub-icon">
+                                            <path d="M20 2 L38 20 L20 38 L2 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="20" cy="20" r="6" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                    <div class="mt-hub-glow"></div>
+                                    <div class="mt-hub-particles" id="mtHubParticles2"></div>
+                                </div>
+                                <div class="mt-result-track">
+                                    <div class="mt-result-label">技能成果</div>
+                                    <div class="mt-result-chips" id="mtResultChips2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item" data-index="3">
+                <div class="timeline-node"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleInternship(3)">
+                        <div class="timeline-main">
+                            <div class="timeline-logo-placeholder">🚀</div>
+                            <div class="timeline-info">
+                                <h4>公司名称</h4>
+                                <span>职位名称 · 方向</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">开始时间 — 结束时间 · 城市</div>
+                        <div class="timeline-arrow">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 6l4 4 4-4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="magic-transform" id="magicTransform3">
+                            <div class="mt-detail-panel">
+                                <div class="mt-detail-card">
+                                    <div class="mt-detail-cover" style="background: linear-gradient(135deg, #4facfe, #00f2fe, #43e97b);">
+                                        <div class="mt-detail-badge">已结束</div>
+                                        <div class="mt-detail-logo-text">公司名称</div>
+                                    </div>
+                                    <div class="mt-detail-body">
+                                        <div class="mt-detail-header">
+                                            <div class="mt-detail-avatar">🚀</div>
+                                            <div class="mt-detail-info">
+                                                <h3>职位名称</h3>
+                                                <p>公司 · 方向</p>
+                                            </div>
+                                        </div>
+                                        <p class="mt-detail-desc">在这里填写你的实习工作描述，介绍你在实习期间负责的主要工作内容和取得的成果。</p>
+                                        <div class="mt-detail-tags">
+                                            <span>技能1</span>
+                                            <span>技能2</span>
+                                            <span>技能3</span>
+                                        </div>
+                                        <div class="mt-detail-meta">
+                                            <span>📅 开始时间 — 结束时间</span>
+                                            <span>📍 城市</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-pipeline">
+                                <div class="mt-doc-track">
+                                    <div class="mt-doc-label">工作任务</div>
+                                    <div class="mt-doc-stream" id="mtDocStream3"></div>
+                                </div>
+                                <div class="mt-hub">
+                                    <div class="mt-hub-ring"></div>
+                                    <div class="mt-hub-core">
+                                        <svg viewBox="0 0 40 40" class="mt-hub-icon">
+                                            <path d="M20 2 L38 20 L20 38 L2 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="20" cy="20" r="6" fill="currentColor"/>
+                                        </svg>
+                                    </div>
+                                    <div class="mt-hub-glow"></div>
+                                    <div class="mt-hub-particles" id="mtHubParticles3"></div>
+                                </div>
+                                <div class="mt-result-track">
+                                    <div class="mt-result-label">技能成果</div>
+                                    <div class="mt-result-chips" id="mtResultChips3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Honors -->
     <section class="honors-section" id="honors">
         <div class="aurora-bg"><div class="aurora-orb"></div></div>
@@ -1636,7 +2692,7 @@
                 <div class="honor-card" data-index="0">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <img src="honor-scholarship.jpg" alt="国家励志奖学金">
+                            <img src="honor-scholarship.jpg" alt="国家励志奖学金" loading="lazy">
                         </div>
                         <div class="honor-card-content">
                             <span class="honor-card-year">2025</span>
@@ -1648,10 +2704,10 @@
                 <div class="honor-card" data-index="1">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <span>🥇</span>
+                            <img src="honor-scholarship-list.png" alt="校一等奖学金" loading="lazy">
                         </div>
                         <div class="honor-card-content">
-                            <span class="honor-card-year">2025</span>
+                            <span class="honor-card-year">2024</span>
                             <h3 class="honor-card-title">校一等奖学金</h3>
                             <p class="honor-card-desc">专业排名第六</p>
                         </div>
@@ -1660,10 +2716,10 @@
                 <div class="honor-card" data-index="2">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <span>⭐</span>
+                            <img src="honor-merit-student.png" alt="校三好学生" loading="lazy">
                         </div>
                         <div class="honor-card-content">
-                            <span class="honor-card-year">2025</span>
+                            <span class="honor-card-year">2024</span>
                             <h3 class="honor-card-title">校三好学生</h3>
                             <p class="honor-card-desc">班委+成绩优异</p>
                         </div>
@@ -1672,7 +2728,7 @@
                 <div class="honor-card" data-index="3">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <img src="honor-challenge-cup.jpg" alt="挑战杯省级铜奖">
+                            <img src="honor-challenge-cup.jpg" alt="挑战杯省级铜奖" loading="lazy">
                         </div>
                         <div class="honor-card-content">
                             <span class="honor-card-year">2025</span>
@@ -1684,7 +2740,7 @@
                 <div class="honor-card" data-index="4">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <img src="honor-goldseed.jpg" alt="金种子杯二等奖">
+                            <img src="honor-goldseed.jpg" alt="金种子杯二等奖" loading="lazy">
                         </div>
                         <div class="honor-card-content">
                             <span class="honor-card-year">2025</span>
@@ -1696,7 +2752,7 @@
                 <div class="honor-card" data-index="5">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <img src="honor-design-marathon.png" alt="设计马拉松铜奖">
+                            <img src="honor-design-marathon.png" alt="设计马拉松铜奖" loading="lazy">
                         </div>
                         <div class="honor-card-content">
                             <span class="honor-card-year">2025</span>
@@ -1708,12 +2764,84 @@
                 <div class="honor-card" data-index="6">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <img src="honor-volunteer.jpg" alt="优秀青年志愿者">
+                            <img src="honor-volunteer.jpg" alt="优秀青年志愿者" loading="lazy">
                         </div>
                         <div class="honor-card-content">
                             <span class="honor-card-year">2025</span>
                             <h3 class="honor-card-title">优秀青年志愿者</h3>
                             <p class="honor-card-desc">志愿服务表彰</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="7">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <img src="honor-league-cadre.jpg" alt="优秀共青团干部" loading="lazy">
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">优秀共青团干部</h3>
+                            <p class="honor-card-desc">班级团支书工作表彰</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="8">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <img src="honor-league-branch.jpg" alt="五四红旗团支部" loading="lazy">
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">五四红旗团支部</h3>
+                            <p class="honor-card-desc">担任团支书期间集体荣誉</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="9">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>📄</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">软件著作权</h3>
+                            <p class="honor-card-desc">3项软件著作权</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="10">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>📄</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">软件著作权</h3>
+                            <p class="honor-card-desc">照片待补充</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="11">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>📄</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">软件著作权</h3>
+                            <p class="honor-card-desc">照片待补充</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="12">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <span>🏅</span>
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2025</span>
+                            <h3 class="honor-card-title">化工虚拟仿真比赛</h3>
+                            <p class="honor-card-desc">初赛特等奖 · 决赛省一等奖</p>
                         </div>
                     </div>
                 </div>
@@ -1757,8 +2885,16 @@
         <p class="footer-text">感谢观看 · 期待相遇</p>
     </footer>
 
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()" title="关闭">✕</button>
+            <video id="modalVideo" controls playsinline preload="none" style="width:100%;height:100%;object-fit:contain;"></video>
+        </div>
+    </div>
+
     <!-- Background Music -->
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop preload="none">
         <source src="bg-music.mp4" type="audio/mp4">
     </audio>
 
@@ -1776,6 +2912,57 @@
     </div>
 
     <script>
+        // ===== VIDEO MODAL =====
+        (function() {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            if (!modal) return;
+
+            // Click background to close
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeVideoModal();
+            });
+
+            // Escape key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            });
+
+            window.openVideoModal = function(videoId) {
+                const sourceVideo = document.getElementById(videoId);
+                if (!sourceVideo || !modalVideo) return;
+
+                const src = sourceVideo.querySelector('source')?.src;
+                if (!src) return;
+
+                modalVideo.src = src;
+                modalVideo.load();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // Wait for video to be ready before playing to avoid stutter
+                const onReady = function() {
+                    modalVideo.play().catch(() => {});
+                    modalVideo.removeEventListener('canplay', onReady);
+                    modalVideo.removeEventListener('loadedmetadata', onReady);
+                };
+                modalVideo.addEventListener('canplay', onReady);
+                modalVideo.addEventListener('loadedmetadata', onReady);
+            };
+
+            window.closeVideoModal = function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                if (modalVideo) {
+                    modalVideo.pause();
+                    modalVideo.removeAttribute('src');
+                    modalVideo.load();
+                }
+            };
+        })();
+
         // ===== VIDEO MUTE TOGGLE =====
         function toggleVideoMute(videoId, btn) {
             const video = document.getElementById(videoId);
@@ -1789,6 +2976,23 @@
                 btn.title = '开启声音';
             }
         }
+
+        // ===== PROJECT VIDEO LAZY LOAD =====
+        (function() {
+            const lazyVideos = [document.getElementById('video1'), document.getElementById('video2')].filter(Boolean);
+            if (lazyVideos.length === 0) return;
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.2 });
+            lazyVideos.forEach(video => videoObserver.observe(video));
+        })();
 
         // ===== DOT FIELD =====
         const dotCanvas = document.getElementById('dotfield');
@@ -1930,12 +3134,49 @@
         const fullscreenMenu = document.getElementById('fullscreenMenu');
         const menuLinks = document.querySelectorAll('.menu-link');
         const siteLogo = document.getElementById('siteLogo');
+        const lanyard3d = document.getElementById('lanyard3d');
+        let lanyardActive = false;
+
+        // Click logo to toggle 3D lanyard
+        siteLogo.addEventListener('click', (e) => {
+            e.preventDefault();
+            lanyardActive = !lanyardActive;
+            lanyard3d.style.opacity = lanyardActive ? '1' : '0';
+            lanyard3d.style.pointerEvents = lanyardActive ? 'auto' : 'none';
+            if (lanyardActive && window.initLanyard3D) window.initLanyard3D();
+        });
+
+        // Close lanyard when clicking outside
+        lanyard3d.addEventListener('click', (e) => {
+            if (e.target === lanyard3d) {
+                lanyardActive = false;
+                lanyard3d.style.opacity = '0';
+                lanyard3d.style.pointerEvents = 'none';
+            }
+        });
+
+        const menuVideo = document.getElementById('menuVideo');
+        let menuVideoLoaded = false;
 
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('active');
             fullscreenMenu.classList.toggle('active');
             siteLogo.classList.toggle('hidden');
+            lanyardActive = false;
+            lanyard3d.style.opacity = '0';
+            lanyard3d.style.pointerEvents = 'none';
             document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : '';
+
+            // Lazy load menu video on first open
+            if (fullscreenMenu.classList.contains('active')) {
+                if (!menuVideoLoaded && menuVideo) {
+                    menuVideoLoaded = true;
+                    menuVideo.load();
+                }
+                if (menuVideo) menuVideo.play().catch(() => {});
+            } else {
+                if (menuVideo) menuVideo.pause();
+            }
         });
 
         menuLinks.forEach(link => {
@@ -1943,6 +3184,9 @@
                 menuBtn.classList.remove('active');
                 fullscreenMenu.classList.remove('active');
                 siteLogo.classList.remove('hidden');
+                lanyardActive = false;
+                lanyard3d.style.opacity = '0';
+                lanyard3d.style.pointerEvents = 'none';
                 document.body.style.overflow = '';
             });
         });
@@ -1974,8 +3218,10 @@
         // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return; // skip empty anchors like logo
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
@@ -2010,9 +3256,14 @@
         // 页面加载后尝试自动播放
         window.addEventListener('load', startMusic);
 
-        // 用户第一次交互时再次尝试
+        // 用户第一次交互时预加载音乐并尝试播放
+        let musicPreloaded = false;
         ['click', 'touchstart', 'scroll'].forEach(evt => {
             document.addEventListener(evt, () => {
+                if (!musicPreloaded) {
+                    musicPreloaded = true;
+                    bgMusic.load();
+                }
                 if (!isPlaying && bgMusic.paused) {
                     bgMusic.volume = 0.3;
                     bgMusic.play().then(() => {
@@ -2318,7 +3569,7 @@
         const track = document.getElementById('honorsTrack');
         const cards = document.querySelectorAll('.honor-card');
         const cardCount = cards.length;
-        const radius = 500;
+        const radius = 650;
         let angle = 0;
         let targetAngle = 0;
         let isDragging = false;
@@ -2401,6 +3652,768 @@
 
         positionCards();
         animate();
+
+        // ===== LANYARD 3D =====
+        window.initLanyard3D = function() {
+            if (window.lanyardScene) return;
+            if (typeof THREE === 'undefined') {
+                console.warn('Three.js is still loading, please wait a moment and try again.');
+                return;
+            }
+            const container = document.getElementById('lanyard3d');
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 3, 14);
+            camera.lookAt(0, 3, 0);
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+            const dl = new THREE.DirectionalLight(0xffffff, 0.6);
+            dl.position.set(5, 10, 7);
+            scene.add(dl);
+            const pl = new THREE.PointLight(0xffd866, 0.4, 20);
+            pl.position.set(0, 0, 5);
+            scene.add(pl);
+
+            function createCardTex() {
+                const c = document.createElement('canvas');
+                c.width = 800; c.height = 1120;
+                const x = c.getContext('2d');
+                x.scale(2, 2);
+
+                // Frosted glass base - solid enough to look like glass
+                const bgGrad = x.createLinearGradient(0, 0, 0, 560);
+                bgGrad.addColorStop(0, 'rgba(255, 255, 255, 0.92)');
+                bgGrad.addColorStop(0.5, 'rgba(245, 240, 252, 0.88)');
+                bgGrad.addColorStop(1, 'rgba(238, 232, 248, 0.85)');
+                roundRect(x, 0, 0, 400, 560, 28);
+                x.fillStyle = bgGrad;
+                x.fill();
+
+                // Hello script
+                x.fillStyle = '#9b6dcc';
+                x.font = 'italic 30px "Playfair Display", serif';
+                x.textAlign = 'center';
+                x.fillText('hello', 200, 50);
+
+                // Translucent photo area
+                x.save();
+                roundRect(x, 35, 70, 330, 200, 16);
+                x.clip();
+                const photoBg = x.createLinearGradient(35, 70, 365, 270);
+                photoBg.addColorStop(0, 'rgba(180, 160, 200, 0.3)');
+                photoBg.addColorStop(0.5, 'rgba(160, 140, 180, 0.25)');
+                photoBg.addColorStop(1, 'rgba(140, 120, 170, 0.3)');
+                x.fillStyle = photoBg;
+                x.fillRect(35, 70, 330, 200);
+                x.restore();
+
+                // Photo border
+                roundRect(x, 35, 70, 330, 200, 16);
+                x.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                x.lineWidth = 2;
+                x.stroke();
+
+                // Placeholder
+                x.fillStyle = 'rgba(180, 140, 100, 0.5)';
+                x.font = '36px sans-serif';
+                x.textAlign = 'center';
+                x.fillText('\uD83D\uDCF7', 200, 185);
+
+                // Name
+                x.fillStyle = '#1a1028';
+                x.font = 'bold 24px sans-serif';
+                x.textAlign = 'center';
+                x.fillText('\u8C22\u9759\u96C5', 200, 310);
+
+                // Role
+                x.fillStyle = '#3a2050';
+                x.font = 'bold 15px sans-serif';
+                x.fillText('UE5 \u865A\u62DF\u4EFF\u771F\u5F00\u53D1\u5DE5\u7A0B\u5E08', 200, 340);
+
+                // Divider
+                const divGrad = x.createLinearGradient(80, 0, 320, 0);
+                divGrad.addColorStop(0, 'transparent');
+                divGrad.addColorStop(0.5, 'rgba(180, 150, 200, 0.5)');
+                divGrad.addColorStop(1, 'transparent');
+                x.strokeStyle = divGrad;
+                x.lineWidth = 1.5;
+                x.beginPath(); x.moveTo(80, 365); x.lineTo(320, 365); x.stroke();
+
+                // Info
+                x.fillStyle = '#4a3060';
+                x.font = '14px sans-serif';
+                x.fillText('\u6E58\u5357\u5B66\u9662 \u00B7 \u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F', 200, 395);
+
+                // GitHub
+                x.fillStyle = '#4a3060';
+                x.font = 'bold 14px sans-serif';
+                x.fillText('\uD83D\uDC19 github.com/xieyayay', 200, 425);
+
+                // Bottom purple bar
+                x.save();
+                roundRectBottom(x, 0, 480, 400, 80, 28);
+                x.clip();
+                const btmGrad = x.createLinearGradient(0, 480, 400, 560);
+                btmGrad.addColorStop(0, '#9b6dcc');
+                btmGrad.addColorStop(1, '#7c3aed');
+                x.fillStyle = btmGrad;
+                x.fillRect(0, 480, 400, 80);
+                x.restore();
+
+                // Bottom icon
+                x.fillStyle = 'rgba(255,255,255,0.9)';
+                x.font = '24px sans-serif';
+                x.fillText('\u2728', 200, 525);
+
+                // Glass shine
+                const shine = x.createLinearGradient(0, 0, 0, 560);
+                shine.addColorStop(0, 'rgba(255,255,255,0.3)');
+                shine.addColorStop(0.2, 'rgba(255,255,255,0.1)');
+                shine.addColorStop(0.5, 'rgba(255,255,255,0)');
+                shine.addColorStop(1, 'rgba(0,0,0,0.02)');
+                x.fillStyle = shine;
+                roundRect(x, 0, 0, 400, 560, 28);
+                x.fill();
+
+                // Border
+                roundRect(x, 0.5, 0.5, 399, 559, 28);
+                x.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+                x.lineWidth = 1.5;
+                x.stroke();
+
+                // Load avatar
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = function() {
+                    x.save();
+                    roundRect(x, 35, 70, 330, 200, 16);
+                    x.clip();
+                    const iw = img.width, ih = img.height;
+                    const scale = Math.max(330 / iw, 200 / ih);
+                    const nw = iw * scale, nh = ih * scale;
+                    x.globalAlpha = 0.85;
+                    x.drawImage(img, 35 + (330 - nw) / 2, 70 + (200 - nh) / 2, nw, nh);
+                    x.globalAlpha = 1;
+                    x.restore();
+                    if (window.lanyardCardMat) window.lanyardCardMat.map.needsUpdate = true;
+                };
+                img.src = 'https://avatars.githubusercontent.com/u/159509141?v=4';
+
+                const t = new THREE.CanvasTexture(c);
+                t.needsUpdate = true;
+                window.lanyardCardMat = { map: t };
+                return t;
+            }
+
+            function roundRect(ctx, x, y, w, h, r) {
+                ctx.beginPath();
+                ctx.moveTo(x + r, y);
+                ctx.lineTo(x + w - r, y);
+                ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+                ctx.lineTo(x + w, y + h - r);
+                ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                ctx.lineTo(x + r, y + h);
+                ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+                ctx.lineTo(x, y + r);
+                ctx.quadraticCurveTo(x, y, x + r, y);
+                ctx.closePath();
+            }
+            function roundRectTop(ctx, x, y, w, h, r) {
+                ctx.beginPath();
+                ctx.moveTo(x + r, y);
+                ctx.lineTo(x + w - r, y);
+                ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+                ctx.lineTo(x + w, y + h);
+                ctx.lineTo(x, y + h);
+                ctx.lineTo(x, y + r);
+                ctx.quadraticCurveTo(x, y, x + r, y);
+                ctx.closePath();
+            }
+            function roundRectBottom(ctx, x, y, w, h, r) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + w, y);
+                ctx.lineTo(x + w, y + h - r);
+                ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                ctx.lineTo(x + r, y + h);
+                ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+                ctx.closePath();
+            }
+
+            class RP {
+                constructor(x, y, z, pinned) {
+                    this.pos = new THREE.Vector3(x, y, z);
+                    this.old = new THREE.Vector3(x, y, z);
+                    this.pinned = pinned;
+                }
+                update(dt, grav, damp) {
+                    if (this.pinned) return;
+                    const v = this.pos.clone().sub(this.old).multiplyScalar(damp);
+                    this.old.copy(this.pos);
+                    this.pos.add(v).add(grav.clone().multiplyScalar(dt * dt));
+                }
+            }
+
+            const segs = 10, segLen = 0.6, grav = new THREE.Vector3(0, -35, 0);
+            const anchorX = 8;
+            const points = [];
+            for (let i = 0; i < segs; i++) {
+                points.push(new RP(anchorX, 10 - i * 0.6, 0, i === 0));
+            }
+
+            const ropeGeo = new THREE.BufferGeometry();
+            const ropeMat = new THREE.LineBasicMaterial({ color: 0xb8a0d0, linewidth: 2, transparent: true, opacity: 0.7 });
+            const ropeLine = new THREE.Line(ropeGeo, ropeMat);
+            scene.add(ropeLine);
+
+            const beadGeo = new THREE.SphereGeometry(0.12, 8, 8);
+            const beadMat = new THREE.MeshStandardMaterial({ color: 0xc4b5e0, metalness: 0.4, roughness: 0.4 });
+            const beads = [];
+            for (let i = 0; i < segs; i++) {
+                const b = new THREE.Mesh(beadGeo, beadMat);
+                scene.add(b); beads.push(b);
+            }
+
+            const ringGeo = new THREE.TorusGeometry(0.25, 0.06, 8, 16);
+            const ringMat = new THREE.MeshStandardMaterial({ color: 0xc0c0c0, metalness: 0.8, roughness: 0.2 });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            scene.add(ring);
+
+            const cardW = 3.0, cardH = 4.2;
+            const cardGeo = new THREE.PlaneGeometry(cardW, cardH);
+            const cardMat = new THREE.MeshBasicMaterial({ map: createCardTex(), transparent: false, side: THREE.DoubleSide });
+            const card = new THREE.Mesh(cardGeo, cardMat);
+            scene.add(card);
+
+            // Card edge
+            const edgeGeo = new THREE.BoxGeometry(cardW, cardH, 0.05);
+            const edgeMat = new THREE.MeshStandardMaterial({ color: 0x1a0f2e, metalness: 0.3, roughness: 0.7 });
+            const edge = new THREE.Mesh(edgeGeo, edgeMat);
+            edge.position.z = -0.03;
+            card.add(edge);
+
+            // Hole at top
+            const holeGeo = new THREE.CircleGeometry(0.15, 16);
+            const holeMat = new THREE.MeshBasicMaterial({ color: 0x0a0515 });
+            const hole = new THREE.Mesh(holeGeo, holeMat);
+            hole.position.set(0, cardH / 2 - 0.3, 0.02);
+            card.add(hole);
+
+            // Clip on card
+            const clipGeo2 = new THREE.BoxGeometry(0.2, 0.3, 0.08);
+            const clipMat2 = new THREE.MeshStandardMaterial({ color: 0xc0c0c0, metalness: 0.9, roughness: 0.1 });
+            const clip2 = new THREE.Mesh(clipGeo2, clipMat2);
+            clip2.position.set(0, cardH / 2 - 0.3, 0.03);
+            card.add(clip2);
+
+            let mx = 0, my = 0, tmx = 0, tmy = 0;
+            let time = 0;
+            renderer.domElement.addEventListener('mousemove', e => {
+                tmx = (e.clientX / window.innerWidth) * 2 - 1;
+                tmy = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            renderer.domElement.addEventListener('touchmove', e => {
+                if (e.touches.length > 0) {
+                    tmx = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+                    tmy = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+                }
+            });
+
+            function animate() {
+                if (!window.lanyardRunning) return;
+                requestAnimationFrame(animate);
+                time += 0.016;
+
+                mx += (tmx - mx) * 0.04;
+                my += (tmy - my) * 0.04;
+
+                const last = points[points.length - 1];
+                // Pull/tug force - mouse drags the card around
+                last.pos.x += (mx * 2.5 + Math.sin(time * 1.2) * 0.4) * 0.012;
+                last.pos.y += (-my * 2.0 + Math.cos(time * 0.9) * 0.3) * 0.008;
+                last.pos.z += Math.sin(time * 0.7) * 0.001;
+
+                for (let s = 0; s < 6; s++) {
+                    for (const p of points) p.update(0.016, grav, 0.985);
+                    for (let i = 0; i < points.length - 1; i++) {
+                        const a = points[i], b = points[i + 1];
+                        const d = b.pos.clone().sub(a.pos);
+                        const dist = d.length();
+                        const corr = d.normalize().multiplyScalar((dist - segLen) * 0.5);
+                        if (!a.pinned) a.pos.add(corr);
+                        if (!b.pinned) b.pos.sub(corr);
+                    }
+                }
+
+                const positions = new Float32Array(segs * 3);
+                for (let i = 0; i < segs; i++) {
+                    positions[i * 3] = points[i].pos.x;
+                    positions[i * 3 + 1] = points[i].pos.y;
+                    positions[i * 3 + 2] = points[i].pos.z;
+                    beads[i].position.copy(points[i].pos);
+                }
+                ropeGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+                const cp = points[points.length - 1].pos;
+                card.position.copy(cp);
+                card.position.y -= cardH / 2 - 0.3;
+
+                // Ring at hole position (inside the card hole)
+                ring.position.copy(card.position);
+                ring.position.y += cardH / 2 - 0.3;
+                ring.position.z += 0.04;
+                ring.rotation.x = Math.PI / 2;
+                ring.rotation.y = time * 0.3;
+
+                // Card always faces camera, only slight sway
+                const prev = points[points.length - 2].pos;
+                const dx = cp.x - prev.x;
+                const dz = cp.z - prev.z;
+                const swayAngle = Math.atan2(dx, -dz) * 0.3;
+                const dy = cp.y - prev.y;
+                const tiltAngle = (dy / segLen - 1) * 0.2;
+
+                card.rotation.set(0, 0, 0);
+                card.rotation.y = swayAngle + Math.sin(time * 0.8) * 0.03;
+                card.rotation.x = tiltAngle * 0.5;
+                card.rotation.z = swayAngle * 0.15;
+
+                renderer.render(scene, camera);
+            }
+
+            window.lanyardScene = { scene, camera, renderer, points };
+            window.lanyardRunning = true;
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+
+    </script>
+
+    <!-- Color Picker Panel -->
+    <div class="color-picker-toggle" id="colorPickerToggle" title="调整主题颜色">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="13.5" cy="6.5" r="2.5"/>
+            <circle cx="17.5" cy="10.5" r="2.5"/>
+            <circle cx="6.5" cy="12.5" r="2.5"/>
+            <circle cx="10.5" cy="17.5" r="2.5"/>
+            <circle cx="17.5" cy="17.5" r="2.5"/>
+        </svg>
+    </div>
+    <div class="color-picker-panel" id="colorPickerPanel">
+        <div class="color-picker-header">
+            <span>主题配色</span>
+            <button class="color-picker-close" id="colorPickerClose">&times;</button>
+        </div>
+        <div class="color-picker-body">
+            <div class="color-row">
+                <label>背景色</label>
+                <input type="color" id="cpBg" value="#1a1a3e">
+            </div>
+            <div class="color-row">
+                <label>卡片底色</label>
+                <input type="color" id="cpSurface" value="#222255">
+            </div>
+            <div class="color-row">
+                <label>强调色</label>
+                <input type="color" id="cpAccent" value="#ffd866">
+            </div>
+            <div class="color-row">
+                <label>紫色</label>
+                <input type="color" id="cpPurple" value="#a78bfa">
+            </div>
+            <div class="color-row">
+                <label>主文字</label>
+                <input type="color" id="cpText" value="#f0f0ff">
+            </div>
+            <div class="color-row">
+                <label>次文字</label>
+                <input type="color" id="cpTextSecondary" value="#d8d8f0">
+            </div>
+            <div class="color-presets">
+                <button class="preset-btn" data-theme="dark" title="深邃紫">🌙</button>
+                <button class="preset-btn" data-theme="light" title="明亮白">☀️</button>
+                <button class="preset-btn" data-theme="ocean" title="海洋蓝">🌊</button>
+                <button class="preset-btn" data-theme="forest" title="森林绿">🌲</button>
+                <button class="preset-btn" data-theme="rose" title="玫瑰粉">🌹</button>
+                <button class="preset-btn" data-theme="gold" title="奢华金">✨</button>
+            </div>
+            <button class="color-reset" id="colorReset">重置默认</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== COLOR PICKER =====
+        (function() {
+            const root = document.documentElement;
+            const toggle = document.getElementById('colorPickerToggle');
+            const panel = document.getElementById('colorPickerPanel');
+            const closeBtn = document.getElementById('colorPickerClose');
+            const resetBtn = document.getElementById('colorReset');
+
+            const inputs = {
+                bg: document.getElementById('cpBg'),
+                surface: document.getElementById('cpSurface'),
+                accent: document.getElementById('cpAccent'),
+                purple: document.getElementById('cpPurple'),
+                text: document.getElementById('cpText'),
+                textSecondary: document.getElementById('cpTextSecondary'),
+            };
+
+            const defaults = {
+                bg: '#1a1a3e',
+                surface: '#222255',
+                accent: '#ffd866',
+                purple: '#a78bfa',
+                text: '#f0f0ff',
+                textSecondary: '#d8d8f0',
+            };
+
+            const presets = {
+                dark: { bg: '#1a1a3e', surface: '#222255', accent: '#ffd866', purple: '#a78bfa', text: '#f0f0ff', textSecondary: '#d8d8f0' },
+                light: { bg: '#f5f5fa', surface: '#ffffff', accent: '#e8913a', purple: '#8b5cf6', text: '#1a1a2e', textSecondary: '#4a4a5a' },
+                ocean: { bg: '#0a1628', surface: '#122040', accent: '#4fd1c5', purple: '#63b3ed', text: '#e6f7ff', textSecondary: '#a0d2ff' },
+                forest: { bg: '#0a1f0a', surface: '#143314', accent: '#68d391', purple: '#9ae6b4', text: '#f0fff4', textSecondary: '#c6f6d5' },
+                rose: { bg: '#1f0a14', surface: '#331422', accent: '#f687b3', purple: '#d53f8c', text: '#fff0f5', textSecondary: '#fed7e2' },
+                gold: { bg: '#1a1200', surface: '#2a1f00', accent: '#f6e05e', purple: '#d69e2e', text: '#fffbeb', textSecondary: '#fef3c7' },
+            };
+
+            function hexToRgb(hex) {
+                const r = parseInt(hex.slice(1, 3), 16);
+                const g = parseInt(hex.slice(3, 5), 16);
+                const b = parseInt(hex.slice(5, 7), 16);
+                return { r, g, b };
+            }
+
+            function setTheme(vars) {
+                root.style.setProperty('--bg', vars.bg);
+                root.style.setProperty('--bg-elevated', vars.surface);
+                root.style.setProperty('--bg-card', adjustColor(vars.surface, 10));
+                root.style.setProperty('--bg-card-hover', adjustColor(vars.surface, 20));
+                root.style.setProperty('--text', vars.text);
+                root.style.setProperty('--text-secondary', vars.textSecondary);
+                root.style.setProperty('--text-muted', adjustAlpha(vars.textSecondary, 0.7));
+                root.style.setProperty('--accent', vars.accent);
+                root.style.setProperty('--accent-secondary', vars.purple);
+                root.style.setProperty('--accent-glow', hexToRgba(vars.accent, 0.5));
+                root.style.setProperty('--accent-secondary-glow', hexToRgba(vars.purple, 0.4));
+                root.style.setProperty('--border', adjustColor(vars.bg, 40));
+                root.style.setProperty('--border-light', adjustColor(vars.bg, 50));
+                root.style.setProperty('--glass-bg', hexToRgba(vars.surface, 0.6));
+                root.style.setProperty('--glass-border', 'rgba(255,255,255,0.15)');
+
+                inputs.bg.value = vars.bg;
+                inputs.surface.value = vars.surface;
+                inputs.accent.value = vars.accent;
+                inputs.purple.value = vars.purple;
+                inputs.text.value = vars.text;
+                inputs.textSecondary.value = vars.textSecondary;
+            }
+
+            function hexToRgba(hex, alpha) {
+                const { r, g, b } = hexToRgb(hex);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+
+            function adjustColor(hex, amount) {
+                const { r, g, b } = hexToRgb(hex);
+                const nr = Math.min(255, Math.max(0, r + amount));
+                const ng = Math.min(255, Math.max(0, g + amount));
+                const nb = Math.min(255, Math.max(0, b + amount));
+                return `#${nr.toString(16).padStart(2,'0')}${ng.toString(16).padStart(2,'0')}${nb.toString(16).padStart(2,'0')}`;
+            }
+
+            function adjustAlpha(color, factor) {
+                if (color.startsWith('#')) {
+                    return hexToRgba(color, factor);
+                }
+                return color;
+            }
+
+            toggle.addEventListener('click', () => {
+                panel.classList.toggle('open');
+                toggle.classList.toggle('active');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                panel.classList.remove('open');
+                toggle.classList.remove('active');
+            });
+
+            Object.keys(inputs).forEach(key => {
+                inputs[key].addEventListener('input', () => {
+                    setTheme({
+                        bg: inputs.bg.value,
+                        surface: inputs.surface.value,
+                        accent: inputs.accent.value,
+                        purple: inputs.purple.value,
+                        text: inputs.text.value,
+                        textSecondary: inputs.textSecondary.value,
+                    });
+                });
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const theme = presets[btn.dataset.theme];
+                    if (theme) setTheme(theme);
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            resetBtn.addEventListener('click', () => {
+                setTheme(defaults);
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+            });
+        })();
+    </script>
+
+    <script>
+    // ===== MAGIC TRANSFORM ANIMATION =====
+    (function() {
+        const mtInstances = {};
+        window.toggleInternship = function(index) {
+            const allItems = document.querySelectorAll('.timeline-item');
+            const targetItem = document.querySelector(`.timeline-item[data-index="${index}"]`);
+            if (!targetItem) return;
+
+            const isActive = targetItem.classList.contains('active');
+
+            // Collapse all
+            allItems.forEach(item => {
+                item.classList.remove('active');
+                const idx = item.dataset.index;
+                if (mtInstances[idx]) mtInstances[idx].stop();
+            });
+
+            // Expand target if it was not active
+            if (!isActive) {
+                targetItem.classList.add('active');
+                if (mtInstances[index]) mtInstances[index].start();
+            }
+        };
+
+        class MagicTransform {
+            constructor(containerId, docs, skills) {
+                this.container = document.getElementById(containerId);
+                if (!this.container) return;
+
+                this.docStream = this.container.querySelector('.mt-doc-stream');
+                this.hubParticles = this.container.querySelector('.mt-hub-particles');
+                this.resultChips = this.container.querySelector('.mt-result-chips');
+
+                this.docs = docs;
+                this.skills = skills;
+                this.docIndex = 0;
+                this.skillIndex = 0;
+                this.isActive = false;
+                this.spawnInterval = null;
+                this.started = false;
+            }
+
+            start() {
+                if (this.spawnInterval || !this.container) return;
+                this.isActive = true;
+                this.spawnDocCard();
+                this.spawnInterval = setInterval(() => this.spawnDocCard(), 2000);
+                // Pre-fill some chips
+                setTimeout(() => {
+                    if (this.resultChips.children.length === 0) {
+                        for (let i = 0; i < 5; i++) {
+                            setTimeout(() => { if (this.resultChips.children.length < 6) this.popSkillChip(); }, i * 120);
+                        }
+                    }
+                }, 400);
+            }
+
+            stop() {
+                this.isActive = false;
+                if (this.spawnInterval) {
+                    clearInterval(this.spawnInterval);
+                    this.spawnInterval = null;
+                }
+            }
+
+            createDocCard(data) {
+                const card = document.createElement('div');
+                card.className = 'mt-doc-card';
+                card.style.top = '320px';
+                card.style.left = '10px';
+                card.style.opacity = '0';
+                card.innerHTML = `
+                    <div class="doc-icon">${data.icon}</div>
+                    <div class="doc-title">${data.title}</div>
+                    <div class="doc-meta">${data.meta}</div>
+                    <div class="doc-bar"><div class="doc-bar-fill" style="width: ${data.bar}%"></div></div>
+                `;
+                return card;
+            }
+
+            spawnDocCard() {
+                if (!this.isActive) return;
+                const data = this.docs[this.docIndex % this.docs.length];
+                this.docIndex++;
+
+                const card = this.createDocCard(data);
+                this.docStream.appendChild(card);
+
+                const duration = 3800;
+                const start = performance.now();
+
+                const animate = (now) => {
+                    if (!card.isConnected) return;
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    const startY = 320;
+                    const endY = -140;
+                    const y = startY + (endY - startY) * progress;
+
+                    let opacity;
+                    if (progress < 0.06) opacity = progress / 0.06;
+                    else if (progress > 0.78) opacity = (1 - progress) / 0.22;
+                    else opacity = 1;
+
+                    const scale = progress > 0.72 ? 1 - (progress - 0.72) / 0.28 * 0.15 : 1;
+
+                    card.style.transform = `translateY(${y - startY}px) scale(${scale})`;
+                    card.style.opacity = opacity;
+
+                    if (progress >= 0.37 && progress < 0.43 && !card.dataset.bursted) {
+                        card.dataset.bursted = 'true';
+                        this.burstParticles();
+                        setTimeout(() => this.popSkillChip(), 180);
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        if (card.isConnected) card.remove();
+                    }
+                };
+                requestAnimationFrame(animate);
+            }
+
+            burstParticles() {
+                const count = 14;
+                const colors = ['var(--accent)', 'var(--accent-secondary)', '#ff6b6b', '#4ecdc4', '#ffd866', '#f093fb'];
+
+                for (let i = 0; i < count; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'mt-particle';
+                    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    p.style.left = '50%';
+                    p.style.top = '50%';
+                    p.style.width = (4 + Math.random() * 5) + 'px';
+                    p.style.height = p.style.width;
+                    this.hubParticles.appendChild(p);
+
+                    const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.8;
+                    const dist = 30 + Math.random() * 60;
+                    const tx = Math.cos(angle) * dist;
+                    const ty = Math.sin(angle) * dist;
+
+                    p.animate([
+                        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
+                    ], {
+                        duration: 700 + Math.random() * 500,
+                        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                        fill: 'forwards'
+                    }).onfinish = () => { if (p.isConnected) p.remove(); };
+                }
+            }
+
+            popSkillChip() {
+                if (!this.isActive) return;
+                const data = this.skills[this.skillIndex % this.skills.length];
+                this.skillIndex++;
+
+                while (this.resultChips.children.length > 16) {
+                    if (this.resultChips.firstChild) this.resultChips.firstChild.remove();
+                }
+
+                const chip = document.createElement('div');
+                chip.className = 'mt-result-chip';
+                chip.textContent = data.name;
+                chip.style.background = data.color;
+                chip.style.boxShadow = `0 4px 15px rgba(0,0,0,0.2)`;
+                chip.style.animationDelay = (Math.random() * 0.1) + 's';
+                this.resultChips.appendChild(chip);
+            }
+        }
+
+        // Internship 1: 袋鼠云
+        const docs1 = [
+            { icon: '🏗️', title: '三维场景搭建', meta: '数字孪生 · UE5', bar: 93 },
+            { icon: '🌐', title: '孪生体建模', meta: '3D可视化 · 建模', bar: 90 },
+            { icon: '⚡', title: '实时数据接入', meta: '数据驱动 · 交互', bar: 88 },
+            { icon: '📊', title: '大屏可视化', meta: 'UMG UI · 渲染', bar: 92 },
+            { icon: '🔧', title: '蓝图交互开发', meta: 'Blueprint · 逻辑', bar: 95 },
+            { icon: '⚙️', title: '性能优化', meta: '渲染优化 · 帧率', bar: 87 },
+            { icon: '📡', title: 'IoT数据映射', meta: '物理映射 · 同步', bar: 91 },
+            { icon: '🗺️', title: '场景漫游系统', meta: 'Camera · 交互', bar: 89 },
+        ];
+        const skills1 = [
+            { name: 'UE5', color: 'linear-gradient(135deg, #ff6b6b, #ee5a5a)' },
+            { name: '数字孪生', color: 'linear-gradient(135deg, #4ecdc4, #44a08d)' },
+            { name: 'Blueprint', color: 'linear-gradient(135deg, #667eea, #764ba2)' },
+            { name: 'C++', color: 'linear-gradient(135deg, #f093fb, #f5576c)' },
+            { name: '3D建模', color: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
+            { name: 'UMG', color: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
+            { name: '数据可视化', color: 'linear-gradient(135deg, #fa709a, #fee140)' },
+            { name: '实时渲染', color: 'linear-gradient(135deg, #a18cd1, #fbc2eb)' },
+            { name: 'Shader', color: 'linear-gradient(135deg, #ff9a9e, #fecfef)' },
+            { name: '性能优化', color: 'linear-gradient(135deg, #667eea, #764ba2)' },
+            { name: 'IoT对接', color: 'linear-gradient(135deg, #ffecd2, #fcb69f)' },
+            { name: '场景设计', color: 'linear-gradient(135deg, #84fab0, #8fd3f4)' },
+        ];
+        mtInstances[1] = new MagicTransform('magicTransform1', docs1, skills1);
+
+        // Internship 2: Placeholder
+        const docs2 = [
+            { icon: '📋', title: '需求分析', meta: '产品 · 调研', bar: 85 },
+            { icon: '💻', title: '功能开发', meta: '前端 · 后端', bar: 90 },
+            { icon: '🧪', title: '测试优化', meta: 'QA · 性能', bar: 88 },
+            { icon: '📈', title: '数据报表', meta: '分析 · 可视化', bar: 92 },
+        ];
+        const skills2 = [
+            { name: 'JavaScript', color: 'linear-gradient(135deg, #f7df1e, #e8c500)' },
+            { name: 'React', color: 'linear-gradient(135deg, #61dafb, #3ba9c4)' },
+            { name: 'Node.js', color: 'linear-gradient(135deg, #68a063, #3c6e47)' },
+            { name: 'SQL', color: 'linear-gradient(135deg, #f29111, #c46a00)' },
+        ];
+        mtInstances[2] = new MagicTransform('magicTransform2', docs2, skills2);
+
+        // Internship 3: Placeholder
+        const docs3 = [
+            { icon: '🎨', title: 'UI设计', meta: '界面 · 原型', bar: 90 },
+            { icon: '✏️', title: '交互设计', meta: '流程 · 体验', bar: 88 },
+            { icon: '📱', title: '移动端适配', meta: '响应式 · 多端', bar: 85 },
+            { icon: '🚀', title: '设计系统', meta: '组件 · 规范', bar: 92 },
+        ];
+        const skills3 = [
+            { name: 'Figma', color: 'linear-gradient(135deg, #a259ff, #7c3aed)' },
+            { name: 'Sketch', color: 'linear-gradient(135deg, #f7b500, #d49600)' },
+            { name: 'Principle', color: 'linear-gradient(135deg, #ff4f8b, #d6336c)' },
+            { name: 'After Effects', color: 'linear-gradient(135deg, #9999ff, #6666cc)' },
+        ];
+        mtInstances[3] = new MagicTransform('magicTransform3', docs3, skills3);
+
+        // Auto-start the first one (it's expanded by default)
+        if (mtInstances[1]) mtInstances[1].start();
+    })();
     </script>
 </body>
 </html>
