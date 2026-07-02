@@ -1274,6 +1274,22 @@
             overflow: hidden;
             border-radius: 16px;
         }
+        .project-visual[data-project="1"],
+        .project-visual[data-project="2"] {
+            background:
+                radial-gradient(circle at 22% 18%, rgba(255, 216, 102, 0.26), transparent 30%),
+                radial-gradient(circle at 82% 78%, rgba(56, 189, 248, 0.18), transparent 32%),
+                linear-gradient(135deg, rgba(11, 13, 30, 0.96), rgba(34, 30, 78, 0.9));
+        }
+        .project-visual[data-project="2"] {
+            background:
+                radial-gradient(circle at 20% 78%, rgba(52, 211, 153, 0.22), transparent 30%),
+                radial-gradient(circle at 82% 20%, rgba(167, 139, 250, 0.24), transparent 34%),
+                linear-gradient(135deg, rgba(9, 17, 28, 0.96), rgba(30, 42, 85, 0.9));
+        }
+        .project-visual video {
+            opacity: 0;
+        }
         .project-visual::after {
             content: '';
             position: absolute;
@@ -2416,6 +2432,12 @@
             .project-title { font-size: 1.45rem; }
             .project-desc { font-size: 0.84rem; }
             .project-visual { border-radius: 14px; }
+            .video-play-overlay { padding: 18px; }
+            .video-cover-kicker { font-size: 0.58rem; padding: 5px 8px; margin-bottom: 10px; }
+            .video-cover-title { max-width: 92%; font-size: 1.12rem; }
+            .video-cover-subtitle { max-width: 92%; font-size: 0.7rem; margin-top: 8px; }
+            .video-play-btn { width: 46px; height: 46px; font-size: 1.1rem; }
+            .video-play-text { font-size: 0.72rem; }
             .intern-card { flex-direction: column; padding: 24px; }
             .intern-date { flex-direction: row; width: auto; gap: 10px; }
             .intern-svg { width: 50px; height: 50px; }
@@ -2449,16 +2471,73 @@
             inset: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.35);
-            backdrop-filter: blur(2px);
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 26px;
+            background:
+                linear-gradient(180deg, rgba(5, 8, 18, 0.1), rgba(5, 8, 18, 0.58)),
+                linear-gradient(90deg, rgba(5, 8, 18, 0.72), transparent 66%);
+            backdrop-filter: none;
             cursor: pointer;
             transition: background 0.3s ease;
             z-index: 3;
         }
+        .video-play-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(90deg, rgba(0,0,0,0.7), transparent 78%);
+            pointer-events: none;
+        }
+        .video-cover-copy,
+        .video-play-action {
+            position: relative;
+            z-index: 1;
+        }
+        .video-cover-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 216, 102, 0.28);
+            border-radius: 999px;
+            color: rgba(255, 216, 102, 0.92);
+            background: rgba(0, 0, 0, 0.25);
+            font-size: 0.68rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .video-cover-title {
+            display: block;
+            max-width: 78%;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.18rem, 2.4vw, 1.7rem);
+            line-height: 1.22;
+            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+        }
+        .video-cover-subtitle {
+            display: block;
+            margin-top: 10px;
+            max-width: 76%;
+            color: rgba(240, 240, 255, 0.72);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+        .video-play-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
         .video-play-overlay:hover {
-            background: rgba(0,0,0,0.25);
+            background:
+                linear-gradient(180deg, rgba(5, 8, 18, 0.02), rgba(5, 8, 18, 0.48)),
+                linear-gradient(90deg, rgba(5, 8, 18, 0.62), transparent 66%);
         }
         .video-play-btn {
             width: 56px;
@@ -2472,7 +2551,7 @@
             color: var(--accent);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 8px;
+            flex: 0 0 auto;
         }
         .video-play-overlay:hover .video-play-btn {
             transform: scale(1.1);
@@ -2816,8 +2895,15 @@
                             <source src="project-benzocaine-seek.mp4" type="video/mp4">
                         </video>
                         <div class="video-play-overlay">
-                            <div class="video-play-btn">▶</div>
-                            <span class="video-play-text">点击播放</span>
+                            <div class="video-cover-copy">
+                                <span class="video-cover-kicker">UE5 Virtual Lab</span>
+                                <span class="video-cover-title">苯佐卡因制备虚拟实验室</span>
+                                <span class="video-cover-subtitle">实验流程演示 / UI交互 / 双模式玩法</span>
+                            </div>
+                            <div class="video-play-action">
+                                <div class="video-play-btn">▶</div>
+                                <span class="video-play-text">点击播放项目视频</span>
+                            </div>
                         </div>
                     </div>
                     <div class="project-content">
@@ -2833,8 +2919,15 @@
                             <source src="project-zinc-fluoride-seek.mp4" type="video/mp4">
                         </video>
                         <div class="video-play-overlay">
-                            <div class="video-play-btn">▶</div>
-                            <span class="video-play-text">点击播放</span>
+                            <div class="video-cover-copy">
+                                <span class="video-cover-kicker">UE5 Simulation</span>
+                                <span class="video-cover-title">氟化锌制备虚拟实验室</span>
+                                <span class="video-cover-subtitle">仪器操作 / 数据反馈 / 实验教学场景</span>
+                            </div>
+                            <div class="video-play-action">
+                                <div class="video-play-btn">▶</div>
+                                <span class="video-play-text">点击播放项目视频</span>
+                            </div>
                         </div>
                     </div>
                     <div class="project-content">
