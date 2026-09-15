@@ -856,207 +856,14 @@
 
         /* ===== SKILLS LAYOUT ===== */
         .skills-layout {
-            display: flex;
-            gap: 40px;
-            max-width: 1300px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 0 40px;
-            align-items: center;
+            padding: 0 32px;
         }
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-            flex: 1;
-            max-width: 700px;
-        }
-        .skills-person {
-            flex: 0 0 360px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: 1000px;
-        }
-        .skill-device {
-            position: relative;
-            width: min(350px, 100%);
-            aspect-ratio: 9 / 16;
-            border-radius: 42px;
-            padding: 13px;
-            background:
-                linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08) 18%, rgba(9, 9, 26, 0.88) 52%, rgba(0, 0, 0, 0.76)),
-                linear-gradient(315deg, #070711 0%, #24204b 44%, #080812 100%);
-            box-shadow:
-                18px 34px 70px rgba(0, 0, 0, 0.48),
-                -10px 16px 36px rgba(167, 139, 250, 0.12),
-                0 0 0 1px rgba(255, 255, 255, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.35),
-                inset 0 -20px 30px rgba(0, 0, 0, 0.42);
-            transform: rotateY(-8deg) rotateX(4deg) rotateZ(2deg);
-            transform-style: preserve-3d;
-            animation: phoneFloat 6s ease-in-out infinite;
-        }
-        @keyframes phoneFloat {
-            0%, 100% { transform: rotateY(-8deg) rotateX(4deg) rotateZ(2deg) translateY(0); }
-            50% { transform: rotateY(-4deg) rotateX(6deg) rotateZ(1deg) translateY(-12px); }
-        }
-        .skill-device::before {
-            content: '';
-            position: absolute;
-            top: 16px;
-            left: 50%;
-            width: 96px;
-            height: 25px;
-            border-radius: 999px;
-            transform: translateX(-50%);
-            background:
-                radial-gradient(circle at 72% 50%, rgba(68, 78, 104, 0.8) 0 3px, transparent 4px),
-                linear-gradient(180deg, #05050b, #10101c);
-            box-shadow:
-                inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-                0 2px 8px rgba(0, 0, 0, 0.45);
-            z-index: 7;
-        }
-        .skill-device::after {
-            content: '';
-            position: absolute;
-            inset: 13px;
-            border-radius: 31px;
-            pointer-events: none;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.14),
-                inset 0 18px 40px rgba(255, 255, 255, 0.08),
-                inset 0 -20px 40px rgba(0, 0, 0, 0.35);
-            z-index: 6;
-        }
-        .skill-device-screen {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-            overflow: hidden;
-            background: #05050c;
-            box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-                inset 0 0 36px rgba(0, 0, 0, 0.52);
-        }
-        .skill-device-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-            filter: saturate(1.08) contrast(1.05) brightness(0.98);
-            transform: scale(1.02);
-        }
-        .skill-device-profile {
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 34px;
-            height: 30%;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            background: rgba(7, 11, 18, 0.82);
-            box-shadow:
-                0 18px 34px rgba(0, 0, 0, 0.42),
-                0 0 24px rgba(56, 189, 248, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.16);
-            transform: rotate(-1.5deg);
-            animation: profileCardDrift 5.5s ease-in-out infinite;
-            z-index: 3;
-        }
-        .skill-device-profile img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 9% 13%;
-            display: block;
-            opacity: 0.9;
-            filter: saturate(1.08) contrast(1.08);
-        }
-        .skill-device-profile::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(180deg, rgba(5, 8, 13, 0) 34%, rgba(5, 8, 13, 0.38) 100%),
-                linear-gradient(90deg, rgba(5, 8, 13, 0.18), transparent 42%);
-            pointer-events: none;
-        }
-        .skill-device-profile::after {
-            content: 'GitHub / Profile';
-            position: absolute;
-            left: 14px;
-            bottom: 10px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            background: rgba(2, 6, 12, 0.62);
-            color: rgba(240, 246, 252, 0.86);
-            font-size: 0.62rem;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        @keyframes profileCardDrift {
-            0%, 100% { transform: rotate(-1.5deg) translateY(0); }
-            50% { transform: rotate(0.8deg) translateY(-5px); }
-        }
-        .skill-device-dock {
-            position: absolute;
-            left: 50%;
-            bottom: 13px;
-            width: 78px;
-            height: 4px;
-            border-radius: 999px;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.55);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
-            z-index: 5;
-        }
-        .skill-device-glare {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(112deg, transparent 0%, rgba(255, 255, 255, 0.28) 18%, transparent 36%),
-                radial-gradient(circle at 72% 10%, rgba(255, 216, 102, 0.16), transparent 34%);
-            mix-blend-mode: screen;
-            pointer-events: none;
-            opacity: 0.56;
-            transform: translateX(-55%);
-            animation: phoneGlare 5.8s ease-in-out infinite;
-            z-index: 4;
-        }
-        @keyframes phoneGlare {
-            0%, 20% { transform: translateX(-65%); opacity: 0; }
-            42% { opacity: 0.58; }
-            72%, 100% { transform: translateX(55%); opacity: 0; }
-        }
-        .skill-device-side {
-            position: absolute;
-            display: block;
-            width: 4px;
-            border-radius: 999px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(8, 8, 18, 0.88));
-            box-shadow: inset -1px 0 2px rgba(255, 255, 255, 0.18), 2px 3px 8px rgba(0, 0, 0, 0.28);
-            z-index: -1;
-        }
-        .skill-device-side.is-power {
-            right: -3px;
-            top: 34%;
-            height: 66px;
-        }
-        .skill-device-side.is-volume {
-            left: -3px;
-            top: 25%;
-            height: 92px;
-        }
-        @media (max-width: 1100px) {
-            .skills-layout { flex-direction: column; padding: 0 20px; }
-            .skills-person { flex: 0 0 auto; width: 100%; max-width: 400px; }
-            .skill-device { width: min(340px, 88vw); }
+            gap: 24px;
         }
         .skill-item {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
@@ -1071,18 +878,15 @@
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             animation: skillFloat 5s ease-in-out infinite;
         }
-        .skill-item:nth-child(1) { animation-delay: 0s; transform: rotate(-0.8deg); }
-        .skill-item:nth-child(2) { animation-delay: -1.2s; transform: rotate(1deg) translateY(30px); }
-        .skill-item:nth-child(3) { animation-delay: -2.4s; transform: rotate(0.5deg) translateY(-10px); }
-        .skill-item:nth-child(4) { animation-delay: -3.6s; transform: rotate(-0.5deg) translateY(20px); }
+        .skill-item:nth-child(1) { animation-delay: 0s; }
+        .skill-item:nth-child(2) { animation-delay: -1.2s; }
+        .skill-item:nth-child(3) { animation-delay: -2.4s; }
+        .skill-item:nth-child(4) { animation-delay: -3.6s; }
         @keyframes skillFloat {
             0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
             50% { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
         }
-        .skill-item:nth-child(1) { --rot: -0.8deg; }
-        .skill-item:nth-child(2) { --rot: 1deg; margin-top: 30px; }
-        .skill-item:nth-child(3) { --rot: 0.5deg; }
-        .skill-item:nth-child(4) { --rot: -0.5deg; margin-top: 20px; }
+        .skill-item:nth-child(n) { --rot: 0deg; }
         .skill-item:hover {
             transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
             border-color: rgba(255, 216, 102, 0.2);
@@ -1432,6 +1236,12 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.9;
+            cursor: zoom-in;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+        }
+        .honor-card-img:hover img {
+            transform: scale(1.04);
+            opacity: 1;
         }
         .honor-card-content {
             padding: 24px;
@@ -2384,45 +2194,8 @@
             .intern-card,
             .honor-card,
             .contact-card { min-width: 0; }
-            .skills-layout { gap: 34px; padding: 0; }
+            .skills-layout { padding: 0; }
             .skills-grid { width: 100%; padding: 0; gap: 18px; }
-            .skills-person { max-width: 100%; overflow: visible; }
-            .skill-device {
-                width: min(292px, 78vw);
-                max-height: 520px;
-                transform: rotateZ(1deg);
-                animation: phoneFloatMobile 6s ease-in-out infinite;
-                border-radius: 36px;
-                padding: 11px;
-            }
-            @keyframes phoneFloatMobile {
-                0%, 100% { transform: rotateZ(1deg) translateY(0); }
-                50% { transform: rotateZ(-0.5deg) translateY(-8px); }
-            }
-            .skill-device::before {
-                top: 13px;
-                width: 78px;
-                height: 21px;
-            }
-            .skill-device::after {
-                inset: 11px;
-                border-radius: 27px;
-            }
-            .skill-device-screen { border-radius: 26px; }
-            .skill-device-profile {
-                left: 14px;
-                right: 14px;
-                bottom: 30px;
-                height: 27%;
-                border-radius: 15px;
-            }
-            .skill-device-profile::after {
-                left: 10px;
-                bottom: 8px;
-                font-size: 0.56rem;
-                padding: 3px 7px;
-            }
-            .skill-device-side { display: none; }
             .skill-item { padding: 28px 24px; border-radius: 18px; }
             .skill-name { font-size: 1.18rem; }
             .skill-desc { font-size: 0.82rem; margin-bottom: 18px; }
@@ -2624,12 +2397,64 @@
             background: rgba(255,255,255,0.25);
             transform: rotate(90deg);
         }
+        /* ===== HONOR IMAGE LIGHTBOX ===== */
+        .honor-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            background: rgba(3, 5, 12, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .honor-modal.active { opacity: 1; pointer-events: auto; }
+        .honor-modal-content {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: min(1100px, 92vw);
+            max-height: 88vh;
+            transform: scale(0.96);
+            transition: transform 0.25s ease;
+        }
+        .honor-modal.active .honor-modal-content { transform: scale(1); }
+        .honor-modal-image {
+            display: block;
+            max-width: 100%;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.58), 0 0 0 1px rgba(255, 255, 255, 0.18);
+        }
+        .honor-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            background: rgba(5, 8, 18, 0.72);
+            color: #fff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        .honor-modal-close:hover { background: rgba(255, 255, 255, 0.2); transform: rotate(90deg); }
         @media (max-width: 768px) {
             .video-modal-content {
                 width: 95vw;
                 height: 50vh;
                 border-radius: 12px;
             }
+            .honor-modal { padding: 18px; }
+            .honor-modal-content, .honor-modal-image { max-width: 100%; max-height: 82vh; }
             .video-play-btn { width: 48px; height: 48px; font-size: 1.2rem; }
         }
     </style>
@@ -2859,20 +2684,6 @@
                         <span class="skill-tag">性能优化</span>
                         <span class="skill-tag">Blender</span>
                         <span class="skill-tag">AI工具</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-person">
-                <div class="skill-device" aria-label="技能篇人物照片">
-                    <span class="skill-device-side is-volume"></span>
-                    <span class="skill-device-side is-power"></span>
-                    <div class="skill-device-screen">
-                        <img src="skill-bg-full.png" alt="技能篇人物照片" class="skill-device-photo">
-                        <div class="skill-device-profile">
-                            <img src="github-profile-mobile.png" alt="GitHub profile overview">
-                        </div>
-                        <span class="skill-device-glare"></span>
-                        <span class="skill-device-dock"></span>
                     </div>
                 </div>
             </div>
@@ -3320,12 +3131,12 @@
                 <div class="honor-card" data-index="9">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <span>📄</span>
+                            <img src="honor-copyright-benzocaine-v1.png" alt="苯佐卡因化学制药虚拟仿真系统V1.0软件著作权登记受理通知书" loading="lazy">
                         </div>
                         <div class="honor-card-content">
-                            <span class="honor-card-year">2025</span>
+                            <span class="honor-card-year">2026</span>
                             <h3 class="honor-card-title">软件著作权</h3>
-                            <p class="honor-card-desc">3项软件著作权</p>
+                            <p class="honor-card-desc">苯佐卡因化学制药虚拟仿真系统 V1.0</p>
                         </div>
                     </div>
                 </div>
@@ -3356,12 +3167,24 @@
                 <div class="honor-card" data-index="12">
                     <div class="honor-card-inner">
                         <div class="honor-card-img">
-                            <span>🏅</span>
+                            <img src="honor-chemical-virtual-simulation.jpg" alt="湖南省第六届大学生化学化工虚拟仿真竞赛初赛特等奖" loading="lazy">
                         </div>
                         <div class="honor-card-content">
-                            <span class="honor-card-year">2025</span>
-                            <h3 class="honor-card-title">化工虚拟仿真比赛</h3>
-                            <p class="honor-card-desc">初赛特等奖 · 决赛省一等奖</p>
+                            <span class="honor-card-year">2026</span>
+                            <h3 class="honor-card-title">化工虚拟仿真竞赛省特等奖</h3>
+                            <p class="honor-card-desc">第六届大学生化学化工虚拟仿真竞赛初赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="honor-card" data-index="13">
+                    <div class="honor-card-inner">
+                        <div class="honor-card-img">
+                            <img src="honor-innovation-competition-2026.png" alt="湘南学院2026年大学生创新大赛校三等奖" loading="lazy">
+                        </div>
+                        <div class="honor-card-content">
+                            <span class="honor-card-year">2026</span>
+                            <h3 class="honor-card-title">大学生创新大赛校三等奖</h3>
+                            <p class="honor-card-desc">“智化无境”化工制药虚拟仿真智训平台</p>
                         </div>
                     </div>
                 </div>
@@ -3410,6 +3233,14 @@
         <div class="video-modal-content">
             <button class="video-modal-close" onclick="closeVideoModal()" title="关闭">✕</button>
             <video id="modalVideo" controls playsinline preload="none" style="width:100%;height:100%;object-fit:contain;"></video>
+        </div>
+    </div>
+
+    <!-- Honor Image Lightbox -->
+    <div class="honor-modal" id="honorModal" role="dialog" aria-modal="true" aria-label="荣誉证书大图预览">
+        <div class="honor-modal-content">
+            <button class="honor-modal-close" id="honorModalClose" type="button" title="关闭大图" aria-label="关闭大图">✕</button>
+            <img class="honor-modal-image" id="honorModalImage" alt="">
         </div>
     </div>
 
@@ -3481,6 +3312,55 @@
                     modalVideo.load();
                 }
             };
+        })();
+
+        // ===== HONOR IMAGE LIGHTBOX =====
+        (function() {
+            const modal = document.getElementById('honorModal');
+            const modalImage = document.getElementById('honorModalImage');
+            const closeButton = document.getElementById('honorModalClose');
+            const honorImages = document.querySelectorAll('.honor-card-img img');
+            let lastTrigger = null;
+
+            if (!modal || !modalImage || !closeButton) return;
+
+            function closeHonorModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                modalImage.removeAttribute('src');
+                if (lastTrigger) lastTrigger.focus();
+            }
+
+            honorImages.forEach((image) => {
+                image.setAttribute('tabindex', '0');
+                image.setAttribute('role', 'button');
+                image.setAttribute('aria-label', `放大查看：${image.alt}`);
+
+                const open = () => {
+                    lastTrigger = image;
+                    modalImage.src = image.currentSrc || image.src;
+                    modalImage.alt = image.alt;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    closeButton.focus();
+                };
+
+                image.addEventListener('click', open);
+                image.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        open();
+                    }
+                });
+            });
+
+            closeButton.addEventListener('click', closeHonorModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) closeHonorModal();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('active')) closeHonorModal();
+            });
         })();
 
         // ===== VIDEO MUTE TOGGLE =====
