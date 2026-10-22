@@ -1,0 +1,25 @@
+# 依赖与构建产物
+node_modules/
+package-lock.json
+dist/
+
+# 编辑器与工具缓存
+.vs/
+.idea/
+.vscode/
+*.suo
+*.vsidx
+*.sqlite
+
+# Git 重写残留
+.git-rewrite/
+
+# 日志与系统文件
+*.log
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# WorkBuddy 工作区数据（本地保留，不上传）
+.workbuddy/
+.workbuddy-ai/
