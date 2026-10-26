@@ -23,3 +23,6 @@ desktop.ini
 # WorkBuddy 工作区数据（本地保留，不上传）
 .workbuddy/
 .workbuddy-ai/
+
+# 文档生成流水线的中间产物
+output/
